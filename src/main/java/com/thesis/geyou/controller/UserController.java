@@ -44,12 +44,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login", method = {RequestMethod.GET})
-	public String checkCredentials(@RequestParam(value = "email") String email,
+	public Boolean checkCredentials(@RequestParam(value = "email") String email,
 									@RequestParam(value = "password") String password) {
-		if (userService.checkCredentials(email, password)) {
-			return "true";
-		} else {
-			return "false";
-		}
+		return userService.checkCredentials(email, password);
 	}
 }

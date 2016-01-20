@@ -58,7 +58,7 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao{
 	public User getUserByEmail(String email) {
 		Criteria criteria = createEntityCriteria("u");
         criteria.add(Restrictions.eq("u.email", email));
-		return null;
+		return (User) criteria.uniqueResult();
 	}
 
 }

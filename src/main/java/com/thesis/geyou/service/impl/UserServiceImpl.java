@@ -46,8 +46,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkCredentials(String email, String password) {
 		User u = userDao.getUserByEmail(email);
+		//System.out.println("User Login: " + u.toString());
 		if (u != null) {
-			if (u.getEmail().equals(password)){
+			if (u.getPassword().equals(password)){
 				return true;
 			} else {
 				return false;
