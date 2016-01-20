@@ -43,9 +43,13 @@ public class UserController {
 		return userService.deleteUser(id);
 	}
 	
-	@RequestMapping(value = "/login", method = {RequestMethod.GET}, produces  = {MediaType.APPLICATION_JSON_VALUE})
-	public boolean checkCredentials(@RequestParam(name="email") String email,
-									@RequestParam(name="password") String password) {
-		return userService.checkCredentials(email, password);
+	@RequestMapping(value = "/login", method = {RequestMethod.GET})
+	public String checkCredentials(@RequestParam(value = "email") String email,
+									@RequestParam(value = "password") String password) {
+		if (userService.checkCredentials(email, password)) {
+			return "true";
+		} else {
+			return "false";
+		}
 	}
 }
