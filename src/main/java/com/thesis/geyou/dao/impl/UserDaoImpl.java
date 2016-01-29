@@ -54,6 +54,9 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao{
 		return delete(id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.thesis.geyou.dao.UserDao#getUserByEmail(java.lang.String)
+	 */
 	@Override
 	public User getUserByEmail(String email) {
 		Criteria criteria = createEntityCriteria("u");
