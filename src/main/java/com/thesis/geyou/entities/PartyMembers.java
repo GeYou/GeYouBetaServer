@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "party_members")
+@Table(name = "PartyMembers")
 @AssociationOverrides({ 
 	@AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "party_id") ),
 	@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "user_id") ) })
