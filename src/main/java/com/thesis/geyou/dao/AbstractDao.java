@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AbstractDao<T, PK extends Serializable> {
@@ -19,7 +20,7 @@ public class AbstractDao<T, PK extends Serializable> {
 	
 	@SuppressWarnings("unchecked")
 	public AbstractDao() {
-		this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+		this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
  
     protected Session getSession(){
@@ -39,9 +40,13 @@ public class AbstractDao<T, PK extends Serializable> {
         return (Integer) getSession().save(entity);
     }
     
-    public List<T> getAllEntities(int page, int size) {
-    	
-    	return null;
+    @SuppressWarnings("unchecked")
+	public List<T> getAllEntities(int page, int size) {
+    	Criteria c = createEntityCriteria("e");
+    	c.setFirstResult((page-1)*size)
+         .setMaxResults(size)
+         .addOrder(Order.asc("id")).list();
+    	return c.list();
     }
     
     public void update(T entity) {
@@ -55,7 +60,7 @@ public class AbstractDao<T, PK extends Serializable> {
     	return q.executeUpdate();
     }
      
-    protected Criteria createEntityCriteria() {
-        return getSession().createCriteria(persistentClass);
+    protected Criteria createEntityCriteria(String alias) {
+        return getSession().createCriteria(persistentClass, alias);
     }
 }

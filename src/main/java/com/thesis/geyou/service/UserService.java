@@ -17,4 +17,6 @@ public interface UserService {
 	public int deleteUser(Integer id);
 	
 	public boolean checkCredentials(String username, String password);
+	
+	public boolean checkEmail(String email);
 }
