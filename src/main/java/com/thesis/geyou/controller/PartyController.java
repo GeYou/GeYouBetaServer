@@ -17,33 +17,35 @@ import com.thesis.geyou.service.PartyService;
 @RestController
 @RequestMapping("/party")
 public class PartyController {
-	
+
 	@Autowired
 	private PartyService partyService;
-	
-	@RequestMapping(value = "/get/{id}", method = {RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
+
+	@RequestMapping(value = "/get/{id}", method = { RequestMethod.GET }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public Party getParty(@PathVariable Integer id) {
 		return partyService.getParty(id);
 	}
-	
-	@RequestMapping(value = "/get/all", method = {RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<Party> getAllParties(@RequestParam(name="page", defaultValue = "0") int page,
-									@RequestParam(name="size", defaultValue = "10") int size) {
+
+	@RequestMapping(value = "/get/all", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<Party> getAllParties(@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "10") int size) {
 		return partyService.getAll(page, size);
 	}
-	
-	@RequestMapping(value = "/create", method = {RequestMethod.POST}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+
+	@RequestMapping(value = "/create", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public void createParty(@RequestBody Party p) {
 		System.out.println("Party object: " + p);
 		partyService.createParty(p);
 	}
-	
-	@RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+
+	@RequestMapping(value = "/delete/{id}", method = { RequestMethod.DELETE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public int deleteParty(@PathVariable Integer id) {
 		return partyService.deleteParty(id);
 	}
-	
-	@RequestMapping(value = "/validateName", method = {RequestMethod.GET})
+
+	@RequestMapping(value = "/validateName", method = { RequestMethod.GET })
 	public Boolean checkName(@RequestParam(value = "name") String name) {
 		return partyService.checkName(name);
 	}

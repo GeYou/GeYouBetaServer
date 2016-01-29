@@ -21,16 +21,16 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "fName", length = 25)
 	private String fName;
 
 	@Column(name = "lName", length = 30)
 	private String lName;
-	
+
 	@Column(name = "email", length = 45, unique = true)
 	private String email;
-	
+
 	@Column(name = "password", length = 20)
 	private String password;
 
@@ -49,7 +49,7 @@ public class User implements Serializable {
 	public void setfName(String fName) {
 		this.fName = fName;
 	}
-	
+
 	public String getlName() {
 		return lName;
 	}
@@ -73,10 +73,10 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [fname : " +getfName() +"]" ;
+		return "[id : " + getId() + "] [fname : " + getfName() + "]";
 	}
-	
+
 }

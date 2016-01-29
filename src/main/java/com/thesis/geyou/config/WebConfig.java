@@ -10,14 +10,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.thesis.geyou.controller"})
+@ComponentScan(basePackages = { "com.thesis.geyou.controller" })
 public class WebConfig {
 
 	@Bean
-	public MappingJackson2HttpMessageConverter converter(){
+	public MappingJackson2HttpMessageConverter converter() {
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		return new MappingJackson2HttpMessageConverter(mapper);
 	}
-	
+
 }

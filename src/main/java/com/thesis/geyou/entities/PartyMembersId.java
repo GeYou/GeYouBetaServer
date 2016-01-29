@@ -17,7 +17,7 @@ public class PartyMembersId implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "party_id", referencedColumnName = "id")
 	private Party party;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "member_id", referencedColumnName = "id")
 	private User user;
