@@ -55,4 +55,9 @@ public class UserController {
 			@RequestParam(value = "password") String password) {
 		return userService.checkCredentials(email, password);
 	}
+
+	@RequestMapping(value = "/update", method = { RequestMethod.PUT })
+	public void updateUser(@RequestBody User u) {
+		userService.updateUser(u);
+	}
 }

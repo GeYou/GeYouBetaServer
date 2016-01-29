@@ -49,4 +49,9 @@ public class PartyController {
 	public Boolean checkName(@RequestParam(value = "name") String name) {
 		return partyService.checkName(name);
 	}
+
+	@RequestMapping(value = "/update", method = { RequestMethod.PUT })
+	public void updateParty(@RequestBody Party p) {
+		partyService.updateParty(p);
+	}
 }
