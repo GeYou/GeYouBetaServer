@@ -24,7 +24,7 @@ public class PartyServiceImpl implements PartyService {
 	 * entities.Party)
 	 */
 	@Override
-	public void createParty(Party p, Integer id) {
+	public void createParty(Party p) {
 		partyDao.createParty(p);
 	}
 
