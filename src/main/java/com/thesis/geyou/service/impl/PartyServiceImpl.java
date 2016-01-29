@@ -3,11 +3,15 @@ package com.thesis.geyou.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.PartyDao;
 import com.thesis.geyou.entities.Party;
 import com.thesis.geyou.service.PartyService;
 
+@Transactional
+@Service(value = "partyService")
 public class PartyServiceImpl implements PartyService {
 
 	@Autowired
