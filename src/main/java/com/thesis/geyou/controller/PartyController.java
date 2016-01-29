@@ -50,7 +50,7 @@ public class PartyController {
 		return partyService.checkName(name);
 	}
 
-	@RequestMapping(value = "/update", method = { RequestMethod.PUT })
+	@RequestMapping(value = "/update", method = { RequestMethod.PUT }, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public void updateParty(@RequestBody Party p) {
 		partyService.updateParty(p);
 	}
