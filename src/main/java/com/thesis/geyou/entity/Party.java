@@ -1,12 +1,15 @@
-package com.thesis.geyou.entities;
+package com.thesis.geyou.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,7 +34,10 @@ public class Party implements Serializable {
 
 	@Column(name = "destination")
 	private String destination;
-
+	
+	@ManyToMany(mappedBy="parties")
+    private Set<User> users = new HashSet<User>();
+	
 	public Integer getId() {
 		return id;
 	}
@@ -70,6 +76,14 @@ public class Party implements Serializable {
 
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	@Override

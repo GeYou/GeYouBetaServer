@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.UserDao;
-import com.thesis.geyou.entities.User;
+import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.UserService;
 
 @Transactional

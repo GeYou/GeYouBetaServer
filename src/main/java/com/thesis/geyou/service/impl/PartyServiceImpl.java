@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.PartyDao;
-import com.thesis.geyou.entities.Party;
+import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.service.PartyService;
 
 @Transactional

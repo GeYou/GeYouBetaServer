@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.thesis.geyou.entities.User;
+import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.UserService;
 
 @RestController
