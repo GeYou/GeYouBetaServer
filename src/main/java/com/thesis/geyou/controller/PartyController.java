@@ -33,10 +33,10 @@ public class PartyController {
 		return partyService.getAll(page, size);
 	}
 
-	@RequestMapping(value = "/create", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public void createParty(@RequestBody Party p) {
+	@RequestMapping(value = "/create/{id}", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public void createParty(@RequestBody Party p, @PathVariable Integer id) {
 		System.out.println("Party object: " + p);
-		partyService.createParty(p);
+		partyService.createParty(p, id);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = { RequestMethod.DELETE }, produces = {
