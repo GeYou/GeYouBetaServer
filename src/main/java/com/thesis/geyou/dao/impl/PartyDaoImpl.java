@@ -9,9 +9,11 @@ import com.thesis.geyou.dao.AbstractDao;
 import com.thesis.geyou.dao.PartyDao;
 import com.thesis.geyou.entities.Party;
 
-public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDao {
+public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.PartyDao#getParty(java.lang.Integer)
 	 */
 	@Override
@@ -19,7 +21,9 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 		return getByKey(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.PartyDao#getAll(int, int)
 	 */
 	@Override
@@ -27,8 +31,11 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 		return getAllEntities(pNo, pSize);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.dao.PartyDao#createParty(com.thesis.geyou.entities.Party)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.dao.PartyDao#createParty(com.thesis.geyou.entities.
+	 * Party)
 	 */
 	@Override
 	public Party createParty(Party p) {
@@ -36,15 +43,20 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 		return getParty(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.dao.PartyDao#updateParty(com.thesis.geyou.entities.Party)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.dao.PartyDao#updateParty(com.thesis.geyou.entities.
+	 * Party)
 	 */
 	@Override
 	public void updateParty(Party p) {
 		update(p);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.PartyDao#deleteParty(java.lang.Integer)
 	 */
 	@Override
@@ -52,13 +64,15 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 		return delete(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.PartyDao#getPartyByName(java.lang.String)
 	 */
 	@Override
 	public Party getPartyByName(String name) {
 		Criteria criteria = createEntityCriteria("p");
-        criteria.add(Restrictions.eq("p.name", name));
+		criteria.add(Restrictions.eq("p.name", name));
 		return (Party) criteria.uniqueResult();
 	}
 

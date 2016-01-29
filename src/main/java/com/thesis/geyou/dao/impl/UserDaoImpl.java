@@ -11,9 +11,11 @@ import com.thesis.geyou.dao.UserDao;
 import com.thesis.geyou.entities.User;
 
 @Repository(value = "userDao")
-public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao{
+public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.impl.UserDao#getUser(java.lang.Integer)
 	 */
 	@Override
@@ -21,16 +23,22 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao{
 		return getByKey(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.impl.UserDao#getAll(int, int)
 	 */
 	@Override
-	public List<User> getAll(int pNo, int pSize){
+	public List<User> getAll(int pNo, int pSize) {
 		return getAllEntities(pNo, pSize);
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.dao.impl.UserDao#createUser(com.thesis.geyou.entities.User)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.thesis.geyou.dao.impl.UserDao#createUser(com.thesis.geyou.entities.
+	 * User)
 	 */
 	@Override
 	public User createUser(User u) {
@@ -38,15 +46,21 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao{
 		return getUser(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.dao.impl.UserDao#updateUser(com.thesis.geyou.entities.User)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.thesis.geyou.dao.impl.UserDao#updateUser(com.thesis.geyou.entities.
+	 * User)
 	 */
 	@Override
 	public void updateUser(User u) {
 		update(u);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.impl.UserDao#deleteUser(java.lang.Integer)
 	 */
 	@Override
@@ -54,13 +68,15 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao{
 		return delete(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.dao.UserDao#getUserByEmail(java.lang.String)
 	 */
 	@Override
 	public User getUserByEmail(String email) {
 		Criteria criteria = createEntityCriteria("u");
-        criteria.add(Restrictions.eq("u.email", email));
+		criteria.add(Restrictions.eq("u.email", email));
 		return (User) criteria.uniqueResult();
 	}
 

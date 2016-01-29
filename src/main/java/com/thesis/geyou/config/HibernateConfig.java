@@ -17,32 +17,30 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource(name = "app" ,value = {"classpath:app.properties"})
+@PropertySource(name = "app", value = { "classpath:app.properties" })
 public class HibernateConfig {
-	
+
 	@Autowired
 	Environment env;
 
 	@Bean
-	public SessionFactory sessionFactory(){
+	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		builder.scanPackages("com.thesis.geyou.entities")
-			.addProperties(getHibernateProperties());
+		builder.scanPackages("com.thesis.geyou.entities").addProperties(getHibernateProperties());
 		SessionFactory sessionFactory = builder.buildSessionFactory();
 		return sessionFactory;
 	}
 
-	
 	private Properties getHibernateProperties() {
 		Properties props = new Properties();
 		props.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		props.put("hibernate.show_sql", "true");
 		props.put("hibernate.format_sql", "true");
-		props.put("hibernate.hbm2ddl.auto", "update");
+		props.put("hibernate.hbm2ddl.auto", "create");
 		return props;
 	}
 
-	private String getEnvProp(String propertyName){
+	private String getEnvProp(String propertyName) {
 		return env.getProperty(propertyName);
 	}
 
@@ -55,10 +53,10 @@ public class HibernateConfig {
 		dataSource.setPassword(getEnvProp("jdbc.pass"));
 		return dataSource;
 	}
-	
+
 	@Bean
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
+	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 		return new HibernateTransactionManager(sessionFactory);
 	}
-	
+
 }

@@ -12,16 +12,21 @@ public class PartyServiceImpl implements PartyService {
 
 	@Autowired
 	public PartyDao partyDao;
-	
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.service.PartyService#createParty(com.thesis.geyou.entities.Party)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.PartyService#createParty(com.thesis.geyou.
+	 * entities.Party)
 	 */
 	@Override
 	public void createParty(Party p) {
 		partyDao.createParty(p);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.service.PartyService#getAll(int, int)
 	 */
 	@Override
@@ -29,7 +34,9 @@ public class PartyServiceImpl implements PartyService {
 		return partyDao.getAll(pNo, pSize);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.service.PartyService#getParty(java.lang.Integer)
 	 */
 	@Override
@@ -37,15 +44,20 @@ public class PartyServiceImpl implements PartyService {
 		return partyDao.getParty(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.service.PartyService#updateParty(com.thesis.geyou.entities.Party)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.PartyService#updateParty(com.thesis.geyou.
+	 * entities.Party)
 	 */
 	@Override
 	public void updateParty(Party p) {
 		partyDao.updateParty(p);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.service.PartyService#deleteParty(java.lang.Integer)
 	 */
 	@Override
@@ -53,12 +65,14 @@ public class PartyServiceImpl implements PartyService {
 		return partyDao.deleteParty(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.service.PartyService#checkName(java.lang.String)
 	 */
 	@Override
 	public boolean checkName(String name) {
-		if(partyDao.getPartyByName(name) != null) {
+		if (partyDao.getPartyByName(name) != null) {
 			return true;
 		} else {
 			return false;

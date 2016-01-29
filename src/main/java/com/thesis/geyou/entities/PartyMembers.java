@@ -10,13 +10,10 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "party_members")
-@AssociationOverrides({
-	@AssociationOverride(name = "pk.party", 
-		joinColumns = @JoinColumn(name = "party_id")),
-	@AssociationOverride(name = "pk.user", 
-		joinColumns = @JoinColumn(name = "user_id")) })
+@AssociationOverrides({ @AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "party_id") ),
+		@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "user_id") ) })
 public class PartyMembers {
-	
+
 	@EmbeddedId
 	private PartyMembersId pk = new PartyMembersId();
 
@@ -27,21 +24,21 @@ public class PartyMembers {
 	public void setPk(PartyMembersId pk) {
 		this.pk = pk;
 	}
-	
+
 	@Transient
 	public User getUser() {
 		return getPk().getUser();
 	}
-	
+
 	public void setUser(User user) {
 		getPk().setUser(user);
 	}
-	
+
 	@Transient
 	public Party getParty() {
 		return getPk().getParty();
 	}
-	
+
 	public void setParty(Party party) {
 		getPk().setParty(party);
 	}

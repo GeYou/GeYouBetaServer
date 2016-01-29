@@ -14,6 +14,6 @@ public interface PartyDao {
 	void updateParty(Party p);
 
 	int deleteParty(Integer id);
-	
+
 	Party getPartyByName(String name);
 }
