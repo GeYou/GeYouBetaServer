@@ -1,18 +1,12 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,12 +31,6 @@ public class User implements Serializable {
 
 	@Column(name = "password", length = 20)
 	private String password;
-	
-	@ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name="PartyMembers", 
-                joinColumns={@JoinColumn(name="userId")}, 
-                inverseJoinColumns={@JoinColumn(name="partyId")})
-    private Set<Party> parties = new HashSet<Party>();
 
 	public Integer getId() {
 		return id;
@@ -82,14 +70,6 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Set<Party> getMeetings() {
-		return parties;
-	}
-
-	public void setParties(Set<Party> parties) {
-		this.parties = parties;
 	}
 
 	@Override
