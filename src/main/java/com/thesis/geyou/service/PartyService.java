@@ -6,7 +6,7 @@ import com.thesis.geyou.entity.Party;
 
 public interface PartyService {
 
-	public void createParty(Party p);
+	public void createParty(Party p, Integer id);
 
 	public List<Party> getAll(int pNo, int pSize);
 

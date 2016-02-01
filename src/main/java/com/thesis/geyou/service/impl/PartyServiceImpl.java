@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.PartyDao;
+import com.thesis.geyou.dao.UserDao;
 import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.service.PartyService;
 
@@ -16,6 +17,9 @@ public class PartyServiceImpl implements PartyService {
 
 	@Autowired
 	public PartyDao partyDao;
+	
+	@Autowired
+	public UserDao userDao;
 
 	/*
 	 * (non-Javadoc)
@@ -24,7 +28,7 @@ public class PartyServiceImpl implements PartyService {
 	 * entities.Party)
 	 */
 	@Override
-	public void createParty(Party p) {
+	public void createParty(Party p, Integer id) {
 		partyDao.createParty(p);
 	}
 
