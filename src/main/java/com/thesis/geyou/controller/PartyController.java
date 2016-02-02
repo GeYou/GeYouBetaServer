@@ -34,9 +34,9 @@ public class PartyController {
 	}
 
 	@RequestMapping(value = "/create", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public void createParty(@RequestBody Party p) {
+	public Party createParty(@RequestBody Party p) {
 		System.out.println("Party object: " + p);
-		partyService.createParty(p);
+		return partyService.createParty(p);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = { RequestMethod.DELETE }, produces = {
