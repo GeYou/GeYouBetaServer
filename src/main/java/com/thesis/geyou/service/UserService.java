@@ -2,7 +2,7 @@ package com.thesis.geyou.service;
 
 import java.util.List;
 
-import com.thesis.geyou.entities.User;
+import com.thesis.geyou.entity.User;
 
 public interface UserService {
 

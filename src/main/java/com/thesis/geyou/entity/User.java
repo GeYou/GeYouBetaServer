@@ -1,4 +1,4 @@
-package com.thesis.geyou.entities;
+package com.thesis.geyou.entity;
 
 import java.io.Serializable;
 
@@ -12,9 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Users")
 public class User implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

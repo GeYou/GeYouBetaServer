@@ -2,7 +2,7 @@ package com.thesis.geyou.dao;
 
 import java.util.List;
 
-import com.thesis.geyou.entities.Party;
+import com.thesis.geyou.entity.Party;
 
 public interface PartyDao {
 	Party getParty(Integer id);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.thesis.geyou.dao.AbstractDao;
 import com.thesis.geyou.dao.UserDao;
-import com.thesis.geyou.entities.User;
+import com.thesis.geyou.entity.User;
 
 @Repository(value = "userDao")
 public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {

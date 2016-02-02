@@ -1,4 +1,4 @@
-package com.thesis.geyou.entities;
+package com.thesis.geyou.entity;
 
 import java.io.Serializable;
 
@@ -31,7 +31,7 @@ public class Party implements Serializable {
 
 	@Column(name = "destination")
 	private String destination;
-
+	
 	public Integer getId() {
 		return id;
 	}

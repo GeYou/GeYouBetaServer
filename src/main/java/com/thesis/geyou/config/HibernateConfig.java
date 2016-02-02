@@ -26,7 +26,7 @@ public class HibernateConfig {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		builder.scanPackages("com.thesis.geyou.entities").addProperties(getHibernateProperties());
+		builder.scanPackages("com.thesis.geyou.entity").addProperties(getHibernateProperties());
 		SessionFactory sessionFactory = builder.buildSessionFactory();
 		return sessionFactory;
 	}

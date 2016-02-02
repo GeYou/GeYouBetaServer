@@ -1,4 +1,4 @@
-package com.thesis.geyou.entities;
+package com.thesis.geyou.entity;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;

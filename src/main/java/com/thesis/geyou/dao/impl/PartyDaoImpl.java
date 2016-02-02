@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.thesis.geyou.dao.AbstractDao;
 import com.thesis.geyou.dao.PartyDao;
-import com.thesis.geyou.entities.Party;
+import com.thesis.geyou.entity.Party;
 
 @Repository(value = "partyDao")
 public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao {
