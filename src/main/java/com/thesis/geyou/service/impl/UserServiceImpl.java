@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 	 * .User)
 	 */
 	@Override
-	public void createUser(User u) {
-		userDao.createUser(u);
+	public User createUser(User u) {
+		return userDao.createUser(u);
 	}
 
 	/*
@@ -80,16 +80,16 @@ public class UserServiceImpl implements UserService {
 	 * java.lang.String)
 	 */
 	@Override
-	public boolean checkCredentials(String email, String password) {
+	public User checkCredentials(String email, String password) {
 		User u = userDao.getUserByEmail(email);
 		if (u != null) {
 			if (u.getPassword().equals(password)) {
-				return true;
+				return u;
 			} else {
-				return false;
+				return null;
 			}
 		} else {
-			return false;
+			return null;
 		}
 	}
 

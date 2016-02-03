@@ -28,8 +28,8 @@ public class PartyServiceImpl implements PartyService {
 	 * entities.Party)
 	 */
 	@Override
-	public void createParty(Party p) {
-		partyDao.createParty(p);
+	public Party createParty(Party p) {
+		return partyDao.createParty(p);
 	}
 
 	/*
