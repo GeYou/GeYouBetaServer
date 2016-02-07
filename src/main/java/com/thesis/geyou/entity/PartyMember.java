@@ -1,5 +1,7 @@
 package com.thesis.geyou.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.EmbeddedId;
@@ -9,20 +11,22 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "PartyMembers")
+@Table(name = "PartyMember")
 @AssociationOverrides({ 
-	@AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "party_id") ),
-	@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "user_id") ) })
-public class PartyMembers {
+	@AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "partyId") ),
+	@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "userId") ) })
+public class PartyMember implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@EmbeddedId
-	private PartyMembersId pk = new PartyMembersId();
+	private PartyMemberId pk = new PartyMemberId();
 
-	public PartyMembersId getPk() {
+	public PartyMemberId getPk() {
 		return pk;
 	}
 
-	public void setPk(PartyMembersId pk) {
+	public void setPk(PartyMemberId pk) {
 		this.pk = pk;
 	}
 

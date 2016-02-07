@@ -1,16 +1,25 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "Users")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,6 +40,9 @@ public class User implements Serializable {
 
 	@Column(name = "password", length = 20)
 	private String password;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.user", cascade=CascadeType.ALL)
+	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
 
 	public Integer getId() {
 		return id;
@@ -70,6 +82,14 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<PartyMember> getPartyMembers() {
+		return partyMembers;
+	}
+
+	public void setPartyMembers(Set<PartyMember> partyMembers) {
+		this.partyMembers = partyMembers;
 	}
 
 	@Override
