@@ -93,7 +93,7 @@ public class Party implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [name : " + getName() + "]";
+		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime() + "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "]";
 	}
 
 }

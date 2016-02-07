@@ -94,7 +94,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [fname : " + getfName() + "]";
+		return "[id : " + getId() + "] [fname : " + getfName() + "] [lname : " + getlName() + "] [email : " + getEmail() + "] [password : " + getPassword() + "]";
 	}
 
 }
