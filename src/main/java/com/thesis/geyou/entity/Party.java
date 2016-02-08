@@ -1,6 +1,7 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,6 +40,9 @@ public class Party implements Serializable {
 
 	@Column(name = "destination")
 	private String destination;
+	
+	@Column(name = "createdDate")
+	private Date createdDate;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.party")
 	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
@@ -83,6 +87,14 @@ public class Party implements Serializable {
 		this.destination = destination;
 	}
 
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	public Set<PartyMember> getPartyMembers() {
 		return partyMembers;
 	}
@@ -93,7 +105,7 @@ public class Party implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime() + "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "]";
+		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime() + "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "] [createdDate : " + getCreatedDate() + "]";
 	}
 
 }

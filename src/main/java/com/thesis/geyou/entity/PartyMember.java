@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "PartyMember")
 @AssociationOverrides({ 
@@ -31,6 +33,7 @@ public class PartyMember implements Serializable {
 	}
 
 	@Transient
+	@JsonBackReference("User")
 	public User getUser() {
 		return getPk().getUser();
 	}
@@ -40,6 +43,7 @@ public class PartyMember implements Serializable {
 	}
 
 	@Transient
+	@JsonBackReference("Party")
 	public Party getParty() {
 		return getPk().getParty();
 	}

@@ -1,6 +1,7 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,6 +41,9 @@ public class User implements Serializable {
 
 	@Column(name = "password", length = 20)
 	private String password;
+	
+	@Column(name = "createdDate")
+	private Date createdDate;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.user", cascade=CascadeType.ALL)
 	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
@@ -84,6 +88,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	public Set<PartyMember> getPartyMembers() {
 		return partyMembers;
 	}
@@ -94,7 +106,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [fname : " + getfName() + "] [lname : " + getlName() + "] [email : " + getEmail() + "] [password : " + getPassword() + "]";
+		return "[id : " + getId() + "] [fname : " + getfName() + "] [lname : " + getlName() + "] [email : " + getEmail() + "] [password : " + getPassword() + "] [createdDate : " + getCreatedDate() + "]";
 	}
 
 }
