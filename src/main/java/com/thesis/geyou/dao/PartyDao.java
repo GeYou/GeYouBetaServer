@@ -11,7 +11,7 @@ public interface PartyDao {
 
 	Party createParty(Party p);
 
-	void updateParty(Party p);
+	Party updateParty(Party p);
 
 	int deleteParty(Integer id);
 

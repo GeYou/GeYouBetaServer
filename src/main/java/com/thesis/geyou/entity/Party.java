@@ -54,6 +54,9 @@ public class Party implements Serializable {
 	@Column(name = "destLat", columnDefinition = "DECIMAL(20, 10)")
 	private Float destLat;
 	
+	@Column(name = "status")
+	private String status;
+	
 	@Column(name = "createdDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
@@ -125,6 +128,14 @@ public class Party implements Serializable {
 		this.destLat = destLat;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -151,7 +162,16 @@ public class Party implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime() + "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "] [createdDate : " + getCreatedDate() + "]";
+		return "[id : " + getId() 
+			+ "] [name : " + getName() 
+			+ "] [startDateTime : " + getStartDateTime() 
+			+ "] [endDateTime : " + getEndDateTime() 
+			+ "] [destination : " + getDestination()
+			+ "] [destLong : " + getDestLong()
+			+ "] [destLat : " + getDestLat()
+			+ "] [status : " + getStatus()
+			+ "] [createdDate : " + getCreatedDate()
+			+ "] [createdBy : " + getCreatedBy() + "]";
 	}
 
 }

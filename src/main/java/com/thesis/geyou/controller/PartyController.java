@@ -44,14 +44,19 @@ public class PartyController {
 	public int deleteParty(@PathVariable Integer id) {
 		return partyService.deleteParty(id);
 	}
-
+	
 	@RequestMapping(value = "/validateName", method = { RequestMethod.GET })
 	public Boolean checkName(@RequestParam(value = "name") String name) {
 		return partyService.checkName(name);
 	}
 
 	@RequestMapping(value = "/update", method = { RequestMethod.PUT }, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public void updateParty(@RequestBody Party p) {
-		partyService.updateParty(p);
+	public Party updateParty(@RequestBody Party p) {
+		return partyService.updateParty(p);
+	}
+	
+	@RequestMapping(value = "/addMember", method = { RequestMethod.PUT })
+	public Party addMember(@RequestParam(value = "partyId") Integer partyId, @RequestParam(value = "userId") Integer userId) {
+		return partyService.addMember(partyId, userId);
 	}
 }
