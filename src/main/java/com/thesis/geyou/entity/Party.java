@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -56,10 +59,14 @@ public class Party implements Serializable {
 	private Date createdDate;
 	
 	@OneToOne
-	@JoinColumn(name = "createdBy", table = "User")
+	@JoinColumn(name = "createdBy", referencedColumnName="id")
 	private User createdBy;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.party")
+	@SuppressWarnings("deprecation")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.party", cascade = 
+	    {CascadeType.PERSIST, CascadeType.MERGE})
+	    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
+	    org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
 	
 	public Integer getId() {

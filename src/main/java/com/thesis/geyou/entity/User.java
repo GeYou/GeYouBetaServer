@@ -17,11 +17,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "User")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class User implements Serializable {
 
@@ -48,7 +50,11 @@ public class User implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.user", cascade=CascadeType.ALL)
+	@SuppressWarnings("deprecation")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.user", cascade = 
+	    {CascadeType.PERSIST, CascadeType.MERGE})
+	    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
+	    org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
 
 	public Integer getId() {
