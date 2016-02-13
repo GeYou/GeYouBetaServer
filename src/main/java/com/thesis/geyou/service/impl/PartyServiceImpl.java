@@ -1,5 +1,6 @@
 package com.thesis.geyou.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class PartyServiceImpl implements PartyService {
 		PartyMember partyMember = new PartyMember();
 		partyMember.setUser(u);
 		partyMember.setParty(p);
+		partyMember.setJoinDate(new Date());
 		
 		p.getPartyMembers().add(partyMember);
 		

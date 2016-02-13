@@ -1,7 +1,7 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -42,7 +44,8 @@ public class User implements Serializable {
 	@Column(name = "password", length = 20)
 	private String password;
 	
-	@Column(name = "createdDate")
+	@Column(name = "createdDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.user", cascade=CascadeType.ALL)

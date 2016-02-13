@@ -1,7 +1,7 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,8 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -41,8 +45,19 @@ public class Party implements Serializable {
 	@Column(name = "destination")
 	private String destination;
 	
-	@Column(name = "createdDate")
+	@Column(name = "destLong", columnDefinition = "DECIMAL(20, 10)")
+	private Float destLong;
+	
+	@Column(name = "destLat", columnDefinition = "DECIMAL(20, 10)")
+	private Float destLat;
+	
+	@Column(name = "createdDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "createdBy", table = "User")
+	private User createdBy;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.party")
 	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
@@ -87,12 +102,36 @@ public class Party implements Serializable {
 		this.destination = destination;
 	}
 
+	public Float getDestLong() {
+		return destLong;
+	}
+
+	public void setDestLong(Float destLong) {
+		this.destLong = destLong;
+	}
+
+	public Float getDestLat() {
+		return destLat;
+	}
+
+	public void setDestLat(Float destLat) {
+		this.destLat = destLat;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public Set<PartyMember> getPartyMembers() {
