@@ -1,16 +1,32 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "Party")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Party implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,6 +47,27 @@ public class Party implements Serializable {
 
 	@Column(name = "destination")
 	private String destination;
+	
+	@Column(name = "destLong", columnDefinition = "DECIMAL(20, 10)")
+	private Float destLong;
+	
+	@Column(name = "destLat", columnDefinition = "DECIMAL(20, 10)")
+	private Float destLat;
+	
+	@Column(name = "createdDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdDate;
+	
+	@OneToOne
+	@JoinColumn(name = "createdBy", referencedColumnName="id")
+	private User createdBy;
+	
+	@SuppressWarnings("deprecation")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.party", cascade = 
+	    {CascadeType.PERSIST, CascadeType.MERGE})
+	    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
+	    org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
 	
 	public Integer getId() {
 		return id;
@@ -72,9 +109,49 @@ public class Party implements Serializable {
 		this.destination = destination;
 	}
 
+	public Float getDestLong() {
+		return destLong;
+	}
+
+	public void setDestLong(Float destLong) {
+		this.destLong = destLong;
+	}
+
+	public Float getDestLat() {
+		return destLat;
+	}
+
+	public void setDestLat(Float destLat) {
+		this.destLat = destLat;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Set<PartyMember> getPartyMembers() {
+		return partyMembers;
+	}
+
+	public void setPartyMembers(Set<PartyMember> partyMembers) {
+		this.partyMembers = partyMembers;
+	}
+
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [name : " + getName() + "]";
+		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime() + "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "] [createdDate : " + getCreatedDate() + "]";
 	}
 
 }
