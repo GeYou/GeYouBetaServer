@@ -18,5 +18,5 @@ public interface PartyService {
 
 	public boolean checkName(String name);
 	
-	public Party addMember(Integer partyId, Integer userId);
+	public Party addMember(Party p, Integer id);
 }

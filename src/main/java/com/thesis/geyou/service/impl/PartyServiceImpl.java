@@ -104,12 +104,10 @@ public class PartyServiceImpl implements PartyService {
 	 * @see com.thesis.geyou.service.PartyService#addMember(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
-	public Party addMember(Integer partyId, Integer userId) {
-		Party p = new Party();
+	public Party addMember(Party p, Integer id) {
 		User u = new User();
 		
-		p.setId(partyId);
-		u.setId(userId);
+		u.setId(id);
 		
 		PartyMember partyMember = new PartyMember();
 		partyMember.setUser(u);
