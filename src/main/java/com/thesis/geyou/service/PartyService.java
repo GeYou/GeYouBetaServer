@@ -12,9 +12,11 @@ public interface PartyService {
 
 	public Party getParty(Integer id);
 
-	public void updateParty(Party p);
+	public Party updateParty(Party p);
 
 	public int deleteParty(Integer id);
 
 	public boolean checkName(String name);
+	
+	public Party addMember(Party p, Integer id);
 }

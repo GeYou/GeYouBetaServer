@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "PartyMember")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 @AssociationOverrides({ 
 	@AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "partyId") ),
 	@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "userId") ) })

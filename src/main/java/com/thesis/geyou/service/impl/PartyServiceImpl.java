@@ -72,8 +72,8 @@ public class PartyServiceImpl implements PartyService {
 	 * entities.Party)
 	 */
 	@Override
-	public void updateParty(Party p) {
-		partyDao.updateParty(p);
+	public Party updateParty(Party p) {
+		return partyDao.updateParty(p);
 	}
 
 	/*
@@ -98,6 +98,23 @@ public class PartyServiceImpl implements PartyService {
 		} else {
 			return false;
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.thesis.geyou.service.PartyService#addMember(java.lang.Integer, java.lang.Integer)
+	 */
+	@Override
+	public Party addMember(Party p, Integer id) {
+		User u = new User();
+		
+		u.setId(id);
+		
+		PartyMember partyMember = new PartyMember();
+		partyMember.setUser(u);
+		partyMember.setParty(p);
+		
+		p.getPartyMembers().add(partyMember);
+		return partyDao.updateParty(p);
 	}
 
 }

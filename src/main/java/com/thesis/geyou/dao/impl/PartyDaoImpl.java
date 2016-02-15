@@ -52,8 +52,10 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao
 	 * Party)
 	 */
 	@Override
-	public void updateParty(Party p) {
+	public Party updateParty(Party p) {
 		update(p);
+		
+		return getParty(p.getId());
 	}
 
 	/*
