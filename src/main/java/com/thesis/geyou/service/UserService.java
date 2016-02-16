@@ -5,17 +5,19 @@ import java.util.List;
 import com.thesis.geyou.entity.User;
 
 public interface UserService {
-	public User createUser(User u);
-
-	public List<User> getAll(int pNo, int pSize);
 
 	public User getUser(Integer id);
 
-	public User updateUser(User u);
+	public List<User> getAll(int pNo, int pSize);
+
+	public User createUser(User u);
 
 	public int deleteUser(Integer id);
 
+	public boolean checkEmail(String email);
+
 	public User checkCredentials(String username, String password);
 
-	public boolean checkEmail(String email);
+	public User updateUser(User u);
+
 }

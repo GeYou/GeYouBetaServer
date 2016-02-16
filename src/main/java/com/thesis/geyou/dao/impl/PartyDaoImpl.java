@@ -48,19 +48,6 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#updateParty(com.thesis.geyou.entities.
-	 * Party)
-	 */
-	@Override
-	public Party updateParty(Party p) {
-		update(p);
-
-		return getParty(p.getId());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.thesis.geyou.dao.PartyDao#deleteParty(java.lang.Integer)
 	 */
 	@Override
@@ -78,6 +65,19 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 		Criteria criteria = createEntityCriteria("p");
 		criteria.add(Restrictions.eq("p.name", name));
 		return (Party) criteria.uniqueResult();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.dao.PartyDao#updateParty(com.thesis.geyou.entities.
+	 * Party)
+	 */
+	@Override
+	public Party updateParty(Party p) {
+		update(p);
+
+		return getParty(p.getId());
 	}
 
 }

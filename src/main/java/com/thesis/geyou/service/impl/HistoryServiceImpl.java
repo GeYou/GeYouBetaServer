@@ -19,26 +19,22 @@ public class HistoryServiceImpl implements HistoryService {
 
 	@Override
 	public History addHistory(History h) {
-		// TODO Auto-generated method stub
-		return null;
+		return historyDao.addHistory(h);
 	}
 
 	@Override
 	public History getHistory(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return historyDao.getHistory(id);
 	}
 
 	@Override
-	public List<History> getAllUserHistory(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<History> getAllUserHistory(Integer id, int page, int size) {
+		return historyDao.getAllUserHistory(id, page, size);
 	}
 
 	@Override
 	public History editHistory(History h) {
-		// TODO Auto-generated method stub
-		return null;
+		return historyDao.editHistory(h);
 	}
 
 }

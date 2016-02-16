@@ -9,7 +9,7 @@ public interface HistoryDao {
 
 	History getHistory(Integer id);
 
-	List<History> getAllUserHistory(Integer id);
+	List<History> getAllUserHistory(Integer id, int page, int size);
 
 	History editHistory(History h);
 }

@@ -49,20 +49,6 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.thesis.geyou.dao.impl.UserDao#updateUser(com.thesis.geyou.entities.
-	 * User)
-	 */
-	@Override
-	public User updateUser(User u) {
-		update(u);
-
-		return getUser(u.getId());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.thesis.geyou.dao.impl.UserDao#deleteUser(java.lang.Integer)
 	 */
 	@Override
@@ -80,6 +66,20 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao {
 		Criteria criteria = createEntityCriteria("u");
 		criteria.add(Restrictions.eq("u.email", email));
 		return (User) criteria.uniqueResult();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.thesis.geyou.dao.impl.UserDao#updateUser(com.thesis.geyou.entities.
+	 * User)
+	 */
+	@Override
+	public User updateUser(User u) {
+		update(u);
+
+		return getUser(u.getId());
 	}
 
 }

@@ -9,7 +9,7 @@ public interface HistoryService {
 
 	public History getHistory(Integer id);
 
-	public List<History> getAllUserHistory(Integer id);
+	public List<History> getAllUserHistory(Integer id, int page, int size);
 
 	public History editHistory(History h);
 }

@@ -5,6 +5,8 @@ package com.thesis.geyou.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.thesis.geyou.dao.AbstractDao;
@@ -22,8 +24,8 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 	 */
 	@Override
 	public History addHistory(History h) {
-		// TODO Auto-generated method stub
-		return null;
+		Integer id = create(h);
+		return getByKey(id);
 	}
 
 	/*
@@ -33,8 +35,7 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 	 */
 	@Override
 	public History getHistory(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getByKey(id);
 	}
 
 	/*
@@ -42,10 +43,12 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 	 * 
 	 * @see com.thesis.geyou.dao.HistoryDao#getAllUserHistory(java.lang.Integer)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<History> getAllUserHistory(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<History> getAllUserHistory(Integer id, int page, int size) {
+		Criteria criteria = createEntityCriteria("h");
+		criteria.add(Restrictions.eq("h.userId", id));
+		return (List<History>) criteria.list();
 	}
 
 	/*
@@ -56,8 +59,9 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 	 */
 	@Override
 	public History editHistory(History h) {
-		// TODO Auto-generated method stub
-		return null;
+		update(h);
+
+		return getByKey(h.getId());
 	}
 
 }

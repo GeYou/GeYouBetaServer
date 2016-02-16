@@ -23,6 +23,26 @@ public class PartyServiceImpl implements PartyService {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.thesis.geyou.service.PartyService#getParty(java.lang.Integer)
+	 */
+	@Override
+	public Party getParty(Integer id) {
+		return partyDao.getParty(id);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.PartyService#getAll(int, int)
+	 */
+	@Override
+	public List<Party> getAll(int pNo, int pSize) {
+		return partyDao.getAll(pNo, pSize);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.thesis.geyou.service.PartyService#createParty(com.thesis.geyou.
 	 * entities.Party)
 	 */
@@ -39,37 +59,6 @@ public class PartyServiceImpl implements PartyService {
 		p.getPartyMembers().add(partyMember);
 
 		return partyDao.createParty(p);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.PartyService#getAll(int, int)
-	 */
-	@Override
-	public List<Party> getAll(int pNo, int pSize) {
-		return partyDao.getAll(pNo, pSize);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.PartyService#getParty(java.lang.Integer)
-	 */
-	@Override
-	public Party getParty(Integer id) {
-		return partyDao.getParty(id);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.PartyService#updateParty(com.thesis.geyou.
-	 * entities.Party)
-	 */
-	@Override
-	public Party updateParty(Party p) {
-		return partyDao.updateParty(p);
 	}
 
 	/*
@@ -94,6 +83,17 @@ public class PartyServiceImpl implements PartyService {
 		} else {
 			return false;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.PartyService#updateParty(com.thesis.geyou.
+	 * entities.Party)
+	 */
+	@Override
+	public Party updateParty(Party p) {
+		return partyDao.updateParty(p);
 	}
 
 	/*

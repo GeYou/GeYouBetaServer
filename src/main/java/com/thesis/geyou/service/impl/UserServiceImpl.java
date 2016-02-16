@@ -20,13 +20,13 @@ public class UserServiceImpl implements UserService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.thesis.geyou.service.UserService#createUser(com.thesis.geyou.entities
-	 * .User)
+	 * @see com.thesis.geyou.service.UserService#getUser(java.lang.Integer)
 	 */
+	@Transactional(readOnly = true)
 	@Override
-	public User createUser(User u) {
-		return userDao.createUser(u);
+	public User getUser(Integer id) {
+
+		return userDao.getUser(id);
 	}
 
 	/*
@@ -42,25 +42,13 @@ public class UserServiceImpl implements UserService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.thesis.geyou.service.UserService#getUser(java.lang.Integer)
-	 */
-	@Transactional(readOnly = true)
-	@Override
-	public User getUser(Integer id) {
-
-		return userDao.getUser(id);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see
-	 * com.thesis.geyou.service.UserService#updateUser(com.thesis.geyou.entities
+	 * com.thesis.geyou.service.UserService#createUser(com.thesis.geyou.entities
 	 * .User)
 	 */
 	@Override
-	public User updateUser(User u) {
-		return userDao.updateUser(u);
+	public User createUser(User u) {
+		return userDao.createUser(u);
 	}
 
 	/*
@@ -71,6 +59,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int deleteUser(Integer id) {
 		return userDao.deleteUser(id);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.UserService#checkEmail(java.lang.String)
+	 */
+	@Override
+	public boolean checkEmail(String email) {
+		if (userDao.getUserByEmail(email) != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*
@@ -97,15 +99,13 @@ public class UserServiceImpl implements UserService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.thesis.geyou.service.UserService#checkEmail(java.lang.String)
+	 * @see
+	 * com.thesis.geyou.service.UserService#updateUser(com.thesis.geyou.entities
+	 * .User)
 	 */
 	@Override
-	public boolean checkEmail(String email) {
-		if (userDao.getUserByEmail(email) != null) {
-			return true;
-		} else {
-			return false;
-		}
+	public User updateUser(User u) {
+		return userDao.updateUser(u);
 	}
 
 }
