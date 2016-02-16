@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
 	 * 
 	 * @see com.thesis.geyou.service.UserService#getAll(int, int)
 	 */
+	@Override
 	public List<User> getAll(int pNo, int pSize) {
 		return userDao.getAll(pNo, pSize);
 	}

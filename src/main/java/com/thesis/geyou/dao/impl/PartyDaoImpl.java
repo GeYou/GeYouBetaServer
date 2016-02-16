@@ -41,7 +41,7 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 	 */
 	@Override
 	public Party createParty(Party p) {
-		Integer id = (Integer) create(p);
+		Integer id = create(p);
 		return getParty(id);
 	}
 

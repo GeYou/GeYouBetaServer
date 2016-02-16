@@ -42,7 +42,7 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao {
 	 */
 	@Override
 	public User createUser(User u) {
-		Integer id = (Integer) create(u);
+		Integer id = create(u);
 		return getUser(id);
 	}
 
