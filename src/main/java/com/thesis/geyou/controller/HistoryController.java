@@ -34,7 +34,7 @@ public class HistoryController {
 
 	@RequestMapping(value = "/getAll/{id}", method = { RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public List<History> getAllParties(@PathVariable Integer id,
+	public List<History> getAllUserHistory(@PathVariable Integer id,
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "10") int size) {
 		return historyService.getAllUserHistory(id, page, size);
