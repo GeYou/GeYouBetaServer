@@ -11,7 +11,7 @@ import com.thesis.geyou.dao.UserDao;
 import com.thesis.geyou.entity.User;
 
 @Repository(value = "userDao")
-public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {
+public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao {
 
 	/*
 	 * (non-Javadoc)
@@ -56,7 +56,7 @@ public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {
 	@Override
 	public User updateUser(User u) {
 		update(u);
-		
+
 		return getUser(u.getId());
 	}
 

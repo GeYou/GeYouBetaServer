@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.PartyDao;
-import com.thesis.geyou.dao.UserDao;
 import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.PartyMember;
 import com.thesis.geyou.entity.User;
@@ -20,9 +19,6 @@ public class PartyServiceImpl implements PartyService {
 
 	@Autowired
 	public PartyDao partyDao;
-	
-	@Autowired
-	public UserDao userDao;
 
 	/*
 	 * (non-Javadoc)
@@ -39,9 +35,9 @@ public class PartyServiceImpl implements PartyService {
 		partyMember.setUser(u);
 		partyMember.setParty(p);
 		partyMember.setJoinDate(new Date());
-		
+
 		p.getPartyMembers().add(partyMember);
-		
+
 		return partyDao.createParty(p);
 	}
 
@@ -100,19 +96,22 @@ public class PartyServiceImpl implements PartyService {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.service.PartyService#addMember(java.lang.Integer, java.lang.Integer)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.PartyService#addMember(java.lang.Integer,
+	 * java.lang.Integer)
 	 */
 	@Override
 	public Party addMember(Party p, Integer id) {
 		User u = new User();
-		
+
 		u.setId(id);
-		
+
 		PartyMember partyMember = new PartyMember();
 		partyMember.setUser(u);
 		partyMember.setParty(p);
-		
+
 		p.getPartyMembers().add(partyMember);
 		return partyDao.updateParty(p);
 	}

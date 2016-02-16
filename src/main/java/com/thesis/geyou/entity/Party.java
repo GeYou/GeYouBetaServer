@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "Party")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
 public class Party implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,31 +47,29 @@ public class Party implements Serializable {
 
 	@Column(name = "destination")
 	private String destination;
-	
+
 	@Column(name = "destLong", columnDefinition = "DECIMAL(20, 10)")
 	private Float destLong;
-	
+
 	@Column(name = "destLat", columnDefinition = "DECIMAL(20, 10)")
 	private Float destLat;
-	
+
 	@Column(name = "status")
 	private String status;
-	
-	@Column(name = "createdDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+
+	@Column(name = "createdDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
-	
+
 	@OneToOne
-	@JoinColumn(name = "createdBy", referencedColumnName="id")
+	@JoinColumn(name = "createdBy", referencedColumnName = "id")
 	private User createdBy;
-	
+
 	@SuppressWarnings("deprecation")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.party", cascade = 
-	    {CascadeType.PERSIST, CascadeType.MERGE})
-	    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
-	    org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.party", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@Cascade({ org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
 	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -162,16 +160,10 @@ public class Party implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() 
-			+ "] [name : " + getName() 
-			+ "] [startDateTime : " + getStartDateTime() 
-			+ "] [endDateTime : " + getEndDateTime() 
-			+ "] [destination : " + getDestination()
-			+ "] [destLong : " + getDestLong()
-			+ "] [destLat : " + getDestLat()
-			+ "] [status : " + getStatus()
-			+ "] [createdDate : " + getCreatedDate()
-			+ "] [createdBy : " + getCreatedBy() + "]";
+		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime()
+				+ "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "] [destLong : "
+				+ getDestLong() + "] [destLat : " + getDestLat() + "] [status : " + getStatus() + "] [createdDate : "
+				+ getCreatedDate() + "] [createdBy : " + getCreatedBy() + "]";
 	}
 
 }

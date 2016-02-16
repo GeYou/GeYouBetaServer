@@ -11,7 +11,7 @@ import com.thesis.geyou.dao.PartyDao;
 import com.thesis.geyou.entity.Party;
 
 @Repository(value = "partyDao")
-public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao {
+public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDao {
 
 	/*
 	 * (non-Javadoc)
@@ -54,7 +54,7 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao
 	@Override
 	public Party updateParty(Party p) {
 		update(p);
-		
+
 		return getParty(p.getId());
 	}
 

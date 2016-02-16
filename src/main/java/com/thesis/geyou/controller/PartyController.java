@@ -33,7 +33,8 @@ public class PartyController {
 		return partyService.getAll(page, size);
 	}
 
-	@RequestMapping(value = "/create/{id}", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/create/{id}", method = { RequestMethod.POST }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public Party createParty(@RequestBody Party p, @PathVariable Integer id) {
 		System.out.println("Party object: " + p);
 		return partyService.createParty(p, id);
@@ -44,7 +45,7 @@ public class PartyController {
 	public int deleteParty(@PathVariable Integer id) {
 		return partyService.deleteParty(id);
 	}
-	
+
 	@RequestMapping(value = "/validateName", method = { RequestMethod.GET })
 	public Boolean checkName(@RequestParam(value = "name") String name) {
 		return partyService.checkName(name);
@@ -54,8 +55,9 @@ public class PartyController {
 	public Party updateParty(@RequestBody Party p) {
 		return partyService.updateParty(p);
 	}
-	
-	@RequestMapping(value = "/addMember/{id}", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+
+	@RequestMapping(value = "/addMember/{id}", method = { RequestMethod.POST }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public Party addMember(@RequestBody Party p, @PathVariable Integer id) {
 		return partyService.addMember(p, id);
 	}

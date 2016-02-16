@@ -5,7 +5,6 @@ import java.util.List;
 import com.thesis.geyou.entity.User;
 
 public interface UserService {
-
 	public User createUser(User u);
 
 	public List<User> getAll(int pNo, int pSize);

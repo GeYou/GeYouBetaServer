@@ -16,31 +16,35 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "History")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-public class History implements Serializable{
-	
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+public class History implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "startLong", columnDefinition = "DECIMAL(20, 10)")
 	private Float startLong;
-	
+
 	@Column(name = "startLat", columnDefinition = "DECIMAL(20, 10)")
 	private Float startLat;
-	
+
 	@Column(name = "endLong", columnDefinition = "DECIMAL(20, 10)")
 	private Float endLong;
-	
+
 	@Column(name = "endLat", columnDefinition = "DECIMAL(20, 10)")
 	private Float endLat;
-	
+
 	@OneToOne
-	@JoinColumn(name = "partyId", referencedColumnName="id")
+	@JoinColumn(name = "partyId", referencedColumnName = "id")
 	private Party party;
+
+	@OneToOne
+	@JoinColumn(name = "userId", referencedColumnName = "id")
+	private User user;
 
 	public Integer getId() {
 		return id;
@@ -88,5 +92,13 @@ public class History implements Serializable{
 
 	public void setParty(Party party) {
 		this.party = party;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

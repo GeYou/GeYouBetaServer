@@ -19,19 +19,18 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "PartyMember")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
-@AssociationOverrides({ 
-	@AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "partyId") ),
-	@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "userId") ) })
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
+@AssociationOverrides({ @AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "partyId") ),
+		@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "userId") ) })
 public class PartyMember implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@EmbeddedId
 	private PartyMemberId pk = new PartyMemberId();
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "joinDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+	@Column(name = "joinDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date joinDate;
 
 	public PartyMemberId getPk() {

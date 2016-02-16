@@ -36,7 +36,7 @@ public class UserController {
 	@RequestMapping(value = "/create", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public User createUser(@RequestBody User u) {
 		System.out.println("User object: " + u);
-		
+
 		return userService.createUser(u);
 	}
 
@@ -46,12 +46,13 @@ public class UserController {
 		return userService.deleteUser(id);
 	}
 
-	@RequestMapping(value = "/validateEmail", method = { RequestMethod.GET }, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/validateEmail", method = { RequestMethod.GET }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public Boolean checkEmail(@RequestParam(value = "email") String email) {
 		return userService.checkEmail(email);
 	}
 
-	@RequestMapping(value = "/login", method = { RequestMethod.GET }, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/login", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public User checkCredentials(@RequestParam(value = "email") String email,
 			@RequestParam(value = "password") String password) {
 		return userService.checkCredentials(email, password);
