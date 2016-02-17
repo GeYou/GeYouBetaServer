@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -68,6 +69,7 @@ public class Party implements Serializable {
 	@SuppressWarnings("deprecation")
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.party", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@Cascade({ org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
+	@JsonManagedReference(value = "party")
 	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
 
 	public Integer getId() {
@@ -160,10 +162,17 @@ public class Party implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime()
-				+ "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "] [destLong : "
-				+ getDestLong() + "] [destLat : " + getDestLat() + "] [status : " + getStatus() + "] [createdDate : "
-				+ getCreatedDate() + "] [createdBy : " + getCreatedBy() + "]";
+		return "[id : " + getId() 
+			+ "] [name : " + getName() 
+			+ "] [startDateTime : " + getStartDateTime()
+			+ "] [endDateTime : " + getEndDateTime() 
+			+ "] [destination : " + getDestination() 
+			+ "] [destLong : " + getDestLong() 
+			+ "] [destLat : " + getDestLat() 
+			+ "] [status : " + getStatus() 
+			+ "] [createdDate : " + getCreatedDate() 
+			+ "] [createdBy : " + getCreatedBy() 
+			+ "]";
 	}
 
 }

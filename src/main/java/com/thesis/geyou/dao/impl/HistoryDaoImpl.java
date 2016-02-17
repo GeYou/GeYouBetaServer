@@ -48,7 +48,7 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 	public List<History> getAllUserHistory(Integer id, int page, int size) {
 		Criteria criteria = createEntityCriteria("h");
 		criteria.add(Restrictions.eq("h.userId", id));
-		return (List<History>) criteria.list();
+		return criteria.list();
 	}
 
 	/*

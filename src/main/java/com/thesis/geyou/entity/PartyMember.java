@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -42,6 +43,7 @@ public class PartyMember implements Serializable {
 	}
 
 	@Transient
+	@JsonBackReference(value = "user")
 	public User getUser() {
 		return getPk().getUser();
 	}
@@ -51,6 +53,7 @@ public class PartyMember implements Serializable {
 	}
 
 	@Transient
+	@JsonBackReference(value = "party")
 	public Party getParty() {
 		return getPk().getParty();
 	}
