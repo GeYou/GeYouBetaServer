@@ -17,6 +17,4 @@ public interface PartyService {
 	public boolean checkName(String name);
 
 	public Party updateParty(Party p);
-
-	public Party addMember(Party p, Integer id);
 }

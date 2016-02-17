@@ -2,27 +2,19 @@ package com.thesis.geyou.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Cascade;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -62,15 +54,9 @@ public class Party implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "createdBy", referencedColumnName = "id")
 	private User createdBy;
-
-	@SuppressWarnings("deprecation")
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.party", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@Cascade({ org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
-	@JsonManagedReference(value = "party")
-	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
 
 	public Integer getId() {
 		return id;
@@ -152,27 +138,13 @@ public class Party implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public Set<PartyMember> getPartyMembers() {
-		return partyMembers;
-	}
-
-	public void setPartyMembers(Set<PartyMember> partyMembers) {
-		this.partyMembers = partyMembers;
-	}
-
 	@Override
 	public String toString() {
-		return "[id : " + getId() 
-			+ "] [name : " + getName() 
-			+ "] [startDateTime : " + getStartDateTime()
-			+ "] [endDateTime : " + getEndDateTime() 
-			+ "] [destination : " + getDestination() 
-			+ "] [destLong : " + getDestLong() 
-			+ "] [destLat : " + getDestLat() 
-			+ "] [status : " + getStatus() 
-			+ "] [createdDate : " + getCreatedDate() 
-			+ "] [createdBy : " + getCreatedBy() 
-			+ "]";
+		return "[id : " + getId() + "] [name : " + getName() + "] [startDateTime : " + getStartDateTime()
+				+ "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "] [destLong : "
+				+ getDestLong() + "] [destLat : " + getDestLat() + "] [status : " + getStatus() + "] [createdDate : "
+				+ getCreatedDate() + "] [createdBy : " + getCreatedBy() + "]";
+
 	}
 
 }
