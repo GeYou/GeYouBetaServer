@@ -54,8 +54,10 @@ public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {
 	 * User)
 	 */
 	@Override
-	public void updateUser(User u) {
+	public User updateUser(User u) {
 		update(u);
+		
+		return getUser(u.getId());
 	}
 
 	/*
