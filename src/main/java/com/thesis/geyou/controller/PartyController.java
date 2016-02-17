@@ -54,9 +54,4 @@ public class PartyController {
 	public Party updateParty(@RequestBody Party p) {
 		return partyService.updateParty(p);
 	}
-	
-	@RequestMapping(value = "/addMember/{id}", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public Party addMember(@RequestBody Party p, @PathVariable Integer id) {
-		return partyService.addMember(p, id);
-	}
 }

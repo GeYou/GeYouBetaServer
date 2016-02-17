@@ -1,6 +1,5 @@
 package com.thesis.geyou.service.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thesis.geyou.dao.PartyDao;
 import com.thesis.geyou.dao.UserDao;
 import com.thesis.geyou.entity.Party;
-import com.thesis.geyou.entity.PartyMember;
 import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.PartyService;
 
@@ -20,7 +18,7 @@ public class PartyServiceImpl implements PartyService {
 
 	@Autowired
 	public PartyDao partyDao;
-	
+
 	@Autowired
 	public UserDao userDao;
 
@@ -35,13 +33,7 @@ public class PartyServiceImpl implements PartyService {
 		User u = new User();
 		u.setId(id);
 		p.setCreatedBy(u);
-		PartyMember partyMember = new PartyMember();
-		partyMember.setUser(u);
-		partyMember.setParty(p);
-		partyMember.setJoinDate(new Date());
-		
-		p.getPartyMembers().add(partyMember);
-		
+
 		return partyDao.createParty(p);
 	}
 
@@ -99,22 +91,4 @@ public class PartyServiceImpl implements PartyService {
 			return false;
 		}
 	}
-
-	/* (non-Javadoc)
-	 * @see com.thesis.geyou.service.PartyService#addMember(java.lang.Integer, java.lang.Integer)
-	 */
-	@Override
-	public Party addMember(Party p, Integer id) {
-		User u = new User();
-		
-		u.setId(id);
-		
-		PartyMember partyMember = new PartyMember();
-		partyMember.setUser(u);
-		partyMember.setParty(p);
-		
-		p.getPartyMembers().add(partyMember);
-		return partyDao.updateParty(p);
-	}
-
 }

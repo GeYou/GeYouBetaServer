@@ -17,6 +17,4 @@ public interface PartyService {
 	public int deleteParty(Integer id);
 
 	public boolean checkName(String name);
-	
-	public Party addMember(Party p, Integer id);
 }
