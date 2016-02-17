@@ -11,9 +11,10 @@ public interface PartyDao {
 
 	Party createParty(Party p);
 
-	Party updateParty(Party p);
-
 	int deleteParty(Integer id);
 
 	Party getPartyByName(String name);
+
+	Party updateParty(Party p);
+
 }

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -38,7 +39,7 @@ public class PartyMember implements Serializable {
 	private Party party;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "joinDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+	@Column(name = "joinDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date joinDate;
 	
 	public Date getJoinDate() {

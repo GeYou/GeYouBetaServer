@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.PartyDao;
-import com.thesis.geyou.dao.UserDao;
 import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.PartyService;
@@ -19,22 +18,14 @@ public class PartyServiceImpl implements PartyService {
 	@Autowired
 	public PartyDao partyDao;
 
-	@Autowired
-	public UserDao userDao;
-
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.thesis.geyou.service.PartyService#createParty(com.thesis.geyou.
-	 * entities.Party)
+	 * @see com.thesis.geyou.service.PartyService#getParty(java.lang.Integer)
 	 */
 	@Override
-	public Party createParty(Party p, Integer id) {
-		User u = new User();
-		u.setId(id);
-		p.setCreatedBy(u);
-
-		return partyDao.createParty(p);
+	public Party getParty(Integer id) {
+		return partyDao.getParty(id);
 	}
 
 	/*
@@ -50,22 +41,16 @@ public class PartyServiceImpl implements PartyService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.thesis.geyou.service.PartyService#getParty(java.lang.Integer)
-	 */
-	@Override
-	public Party getParty(Integer id) {
-		return partyDao.getParty(id);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.PartyService#updateParty(com.thesis.geyou.
+	 * @see com.thesis.geyou.service.PartyService#createParty(com.thesis.geyou.
 	 * entities.Party)
 	 */
 	@Override
-	public Party updateParty(Party p) {
-		return partyDao.updateParty(p);
+	public Party createParty(Party p, Integer id) {
+		User u = new User();
+		u.setId(id);
+		p.setCreatedBy(u);
+		
+		return partyDao.createParty(p);
 	}
 
 	/*
@@ -90,5 +75,16 @@ public class PartyServiceImpl implements PartyService {
 		} else {
 			return false;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.PartyService#updateParty(com.thesis.geyou.
+	 * entities.Party)
+	 */
+	@Override
+	public Party updateParty(Party p) {
+		return partyDao.updateParty(p);
 	}
 }

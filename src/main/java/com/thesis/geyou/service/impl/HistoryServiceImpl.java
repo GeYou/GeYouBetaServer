@@ -1,0 +1,40 @@
+package com.thesis.geyou.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.thesis.geyou.dao.HistoryDao;
+import com.thesis.geyou.entity.History;
+import com.thesis.geyou.service.HistoryService;
+
+@Transactional
+@Service(value = "historyService")
+public class HistoryServiceImpl implements HistoryService {
+
+	@Autowired
+	public HistoryDao historyDao;
+
+	@Override
+	public History addHistory(History h) {
+		return historyDao.addHistory(h);
+	}
+
+	@Override
+	public History getHistory(Integer id) {
+		return historyDao.getHistory(id);
+	}
+
+	@Override
+	public List<History> getAllUserHistory(Integer id, int page, int size) {
+		return historyDao.getAllUserHistory(id, page, size);
+	}
+
+	@Override
+	public History editHistory(History h) {
+		return historyDao.editHistory(h);
+	}
+
+}

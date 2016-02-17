@@ -11,7 +11,7 @@ import com.thesis.geyou.dao.UserDao;
 import com.thesis.geyou.entity.User;
 
 @Repository(value = "userDao")
-public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {
+public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao {
 
 	/*
 	 * (non-Javadoc)
@@ -42,22 +42,8 @@ public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {
 	 */
 	@Override
 	public User createUser(User u) {
-		Integer id = (Integer) create(u);
+		Integer id = create(u);
 		return getUser(id);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.thesis.geyou.dao.impl.UserDao#updateUser(com.thesis.geyou.entities.
-	 * User)
-	 */
-	@Override
-	public User updateUser(User u) {
-		update(u);
-		
-		return getUser(u.getId());
 	}
 
 	/*
@@ -80,6 +66,20 @@ public class UserDaoImpl extends AbstractDao<User, Integer>implements UserDao {
 		Criteria criteria = createEntityCriteria("u");
 		criteria.add(Restrictions.eq("u.email", email));
 		return (User) criteria.uniqueResult();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.thesis.geyou.dao.impl.UserDao#updateUser(com.thesis.geyou.entities.
+	 * User)
+	 */
+	@Override
+	public User updateUser(User u) {
+		update(u);
+
+		return getUser(u.getId());
 	}
 
 }
