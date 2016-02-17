@@ -3,67 +3,70 @@ package com.thesis.geyou.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "PartyMember")
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
-@AssociationOverrides({ @AssociationOverride(name = "pk.party", joinColumns = @JoinColumn(name = "partyId") ),
-		@AssociationOverride(name = "pk.user", joinColumns = @JoinColumn(name = "userId") ) })
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class PartyMember implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@EmbeddedId
-	private PartyMemberId pk = new PartyMemberId();
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name = "userId", referencedColumnName = "id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "partyId", referencedColumnName = "id")
+	private Party party;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "joinDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date joinDate;
-
-	public PartyMemberId getPk() {
-		return pk;
+	
+	public Date getJoinDate() {
+		return joinDate;
 	}
 
-	public void setPk(PartyMemberId pk) {
-		this.pk = pk;
+	public Integer getId() {
+		return id;
 	}
 
-	@Transient
-	@JsonBackReference(value = "user")
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public User getUser() {
-		return getPk().getUser();
+		return user;
 	}
 
 	public void setUser(User user) {
-		getPk().setUser(user);
+		this.user = user;
 	}
 
-	@Transient
-	@JsonBackReference(value = "party")
 	public Party getParty() {
-		return getPk().getParty();
+		return party;
 	}
 
 	public void setParty(Party party) {
-		getPk().setParty(party);
-	}
-
-	public Date getJoinDate() {
-		return joinDate;
+		this.party = party;
 	}
 
 	public void setJoinDate(Date joinDate) {

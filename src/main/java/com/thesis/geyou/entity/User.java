@@ -2,25 +2,17 @@ package com.thesis.geyou.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Cascade;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -50,12 +42,6 @@ public class User implements Serializable {
 	@Column(name = "createdDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
-
-	@SuppressWarnings("deprecation")
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@Cascade({ org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
-	@JsonManagedReference(value = "user")
-	private Set<PartyMember> parties = new HashSet<PartyMember>(0);
 
 	public Integer getId() {
 		return id;
@@ -105,23 +91,10 @@ public class User implements Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Set<PartyMember> getPartyMembers() {
-		return parties;
-	}
-
-	public void setPartyMembers(Set<PartyMember> partyMembers) {
-		this.parties = partyMembers;
-	}
-
 	@Override
 	public String toString() {
-		return "[id : " + getId() 
-			+ "] [fname : " + getfName() 
-			+ "] [lname : " + getlName() 
-			+ "] [email : " + getEmail()
-			+ "] [password : " + getPassword() 
-			+ "] [createdDate : " + getCreatedDate() 
-			+ "]";
+		return "[id : " + getId() + "] [fname : " + getfName() + "] [lname : " + getlName() + "] [email : " + getEmail()
+				+ "] [password : " + getPassword() + "] [createdDate : " + getCreatedDate() + "]";
 	}
 
 }
