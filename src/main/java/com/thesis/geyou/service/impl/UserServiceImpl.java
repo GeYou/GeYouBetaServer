@@ -20,27 +20,6 @@ public class UserServiceImpl implements UserService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.thesis.geyou.service.UserService#createUser(com.thesis.geyou.entities
-	 * .User)
-	 */
-	@Override
-	public User createUser(User u) {
-		return userDao.createUser(u);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.UserService#getAll(int, int)
-	 */
-	public List<User> getAll(int pNo, int pSize) {
-		return userDao.getAll(pNo, pSize);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.thesis.geyou.service.UserService#getUser(java.lang.Integer)
 	 */
 	@Transactional(readOnly = true)
@@ -53,13 +32,23 @@ public class UserServiceImpl implements UserService {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.thesis.geyou.service.UserService#getAll(int, int)
+	 */
+	@Override
+	public List<User> getAll(int pNo, int pSize) {
+		return userDao.getAll(pNo, pSize);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see
-	 * com.thesis.geyou.service.UserService#updateUser(com.thesis.geyou.entities
+	 * com.thesis.geyou.service.UserService#createUser(com.thesis.geyou.entities
 	 * .User)
 	 */
 	@Override
-	public User updateUser(User u) {
-		return userDao.updateUser(u);
+	public User createUser(User u) {
+		return userDao.createUser(u);
 	}
 
 	/*
@@ -70,6 +59,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int deleteUser(Integer id) {
 		return userDao.deleteUser(id);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.service.UserService#checkEmail(java.lang.String)
+	 */
+	@Override
+	public boolean checkEmail(String email) {
+		if (userDao.getUserByEmail(email) != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*
@@ -96,15 +99,13 @@ public class UserServiceImpl implements UserService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.thesis.geyou.service.UserService#checkEmail(java.lang.String)
+	 * @see
+	 * com.thesis.geyou.service.UserService#updateUser(com.thesis.geyou.entities
+	 * .User)
 	 */
 	@Override
-	public boolean checkEmail(String email) {
-		if (userDao.getUserByEmail(email) != null) {
-			return true;
-		} else {
-			return false;
-		}
+	public User updateUser(User u) {
+		return userDao.updateUser(u);
 	}
 
 }

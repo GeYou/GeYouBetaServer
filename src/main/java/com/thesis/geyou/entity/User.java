@@ -20,11 +20,12 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "User")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -45,17 +46,16 @@ public class User implements Serializable {
 
 	@Column(name = "password", length = 20)
 	private String password;
-	
-	@Column(name = "createdDate", updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+
+	@Column(name = "createdDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
-	
+
 	@SuppressWarnings("deprecation")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.user", cascade = 
-	    {CascadeType.PERSIST, CascadeType.MERGE})
-	    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
-	    org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-	private Set<PartyMember> partyMembers = new HashSet<PartyMember>(0);
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@Cascade({ org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
+	@JsonManagedReference(value = "user")
+	private Set<PartyMember> parties = new HashSet<PartyMember>(0);
 
 	public Integer getId() {
 		return id;
@@ -106,16 +106,22 @@ public class User implements Serializable {
 	}
 
 	public Set<PartyMember> getPartyMembers() {
-		return partyMembers;
+		return parties;
 	}
 
 	public void setPartyMembers(Set<PartyMember> partyMembers) {
-		this.partyMembers = partyMembers;
+		this.parties = partyMembers;
 	}
 
 	@Override
 	public String toString() {
-		return "[id : " + getId() + "] [fname : " + getfName() + "] [lname : " + getlName() + "] [email : " + getEmail() + "] [password : " + getPassword() + "] [createdDate : " + getCreatedDate() + "]";
+		return "[id : " + getId() 
+			+ "] [fname : " + getfName() 
+			+ "] [lname : " + getlName() 
+			+ "] [email : " + getEmail()
+			+ "] [password : " + getPassword() 
+			+ "] [createdDate : " + getCreatedDate() 
+			+ "]";
 	}
 
 }

@@ -11,7 +11,7 @@ import com.thesis.geyou.dao.PartyDao;
 import com.thesis.geyou.entity.Party;
 
 @Repository(value = "partyDao")
-public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao {
+public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDao {
 
 	/*
 	 * (non-Javadoc)
@@ -41,21 +41,8 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao
 	 */
 	@Override
 	public Party createParty(Party p) {
-		Integer id = (Integer) create(p);
+		Integer id = create(p);
 		return getParty(id);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#updateParty(com.thesis.geyou.entities.
-	 * Party)
-	 */
-	@Override
-	public Party updateParty(Party p) {
-		update(p);
-		
-		return getParty(p.getId());
 	}
 
 	/*
@@ -78,6 +65,19 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao
 		Criteria criteria = createEntityCriteria("p");
 		criteria.add(Restrictions.eq("p.name", name));
 		return (Party) criteria.uniqueResult();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.thesis.geyou.dao.PartyDao#updateParty(com.thesis.geyou.entities.
+	 * Party)
+	 */
+	@Override
+	public Party updateParty(Party p) {
+		update(p);
+
+		return getParty(p.getId());
 	}
 
 }

@@ -12,10 +12,10 @@ public interface UserDao {
 
 	User createUser(User u);
 
-	User updateUser(User u);
-
 	int deleteUser(Integer id);
 
 	User getUserByEmail(String email);
+
+	User updateUser(User u);
 
 }
