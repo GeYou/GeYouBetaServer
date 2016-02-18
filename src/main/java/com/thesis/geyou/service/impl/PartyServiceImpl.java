@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.PartyDao;
 import com.thesis.geyou.entity.Party;
+import com.thesis.geyou.entity.PartyMember;
 import com.thesis.geyou.entity.User;
+import com.thesis.geyou.service.PartyMemberService;
 import com.thesis.geyou.service.PartyService;
 
 @Transactional
@@ -17,6 +19,9 @@ public class PartyServiceImpl implements PartyService {
 
 	@Autowired
 	public PartyDao partyDao;
+	
+	@Autowired
+	public PartyMemberService partyMemberService;
 
 	@Override
 	public Party getParty(Integer id) {
@@ -34,7 +39,14 @@ public class PartyServiceImpl implements PartyService {
 		u.setId(id);
 		p.setCreatedBy(u);
 		
-		return partyDao.createParty(p);
+		Party nParty = partyDao.createParty(p);
+		
+		PartyMember pm = new PartyMember();
+		pm.setUser(u);
+		pm.setParty(nParty);
+		partyMemberService.addMember(pm);
+		
+		return nParty;
 	}
 
 	@Override
@@ -51,12 +63,6 @@ public class PartyServiceImpl implements PartyService {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.PartyService#updateParty(com.thesis.geyou.
-	 * entities.Party)
-	 */
 	@Override
 	public Party updateParty(Party p) {
 		return partyDao.updateParty(p);
