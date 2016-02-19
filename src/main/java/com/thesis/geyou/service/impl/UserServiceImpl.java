@@ -15,16 +15,17 @@ import com.thesis.geyou.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	public UserDao userDao;
+	private UserDao userDao;
 
-	@Transactional(readOnly = true)
 	@Override
+	@Transactional(readOnly = true)
 	public User getUser(Integer id) {
 
 		return userDao.getUser(id);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<User> getAll(int pNo, int pSize) {
 		return userDao.getAll(pNo, pSize);
 	}
@@ -66,5 +67,4 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User u) {
 		return userDao.updateUser(u);
 	}
-
 }

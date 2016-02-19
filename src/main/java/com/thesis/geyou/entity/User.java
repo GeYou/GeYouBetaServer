@@ -92,5 +92,4 @@ public class User implements Serializable {
 		return "[id : " + getId() + "] [fname : " + getfName() + "] [lname : " + getlName() + "] [email : " + getEmail()
 				+ "] [password : " + getPassword() + "] [createdDate : " + getCreatedDate() + "]";
 	}
-
 }

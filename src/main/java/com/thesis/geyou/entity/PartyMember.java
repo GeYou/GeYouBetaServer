@@ -43,6 +43,9 @@ public class PartyMember implements Serializable {
 	@Column(name = "joinDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date joinDate;
 	
+	@Column(name = "status")
+	private String status;
+	
 	public Date getJoinDate() {
 		return joinDate;
 	}
@@ -89,5 +92,13 @@ public class PartyMember implements Serializable {
 
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

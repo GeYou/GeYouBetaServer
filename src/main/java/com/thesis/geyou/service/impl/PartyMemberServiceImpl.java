@@ -26,11 +26,13 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public PartyMember getPartyMember(Integer id) {
 		return partyMemberDao.getPartyMember(id);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<User> getPartyMembers(Integer id) {
 		Party p = new Party();
 		p.setId(id);
@@ -43,5 +45,19 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 		}
 		
 		return u;
+	}
+
+	@Override
+	public Party getActiveParty(Integer id) {
+		User u = new User();
+		u.setId(id);
+		
+		PartyMember pm = partyMemberDao.getActiveParty(u); 
+		
+		if(pm != null) {
+			return pm.getParty();
+		} else {
+			return null;
+		}		
 	}
 }

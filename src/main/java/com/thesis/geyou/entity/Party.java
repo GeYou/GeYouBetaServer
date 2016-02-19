@@ -140,7 +140,5 @@ public class Party implements Serializable {
 				+ "] [endDateTime : " + getEndDateTime() + "] [destination : " + getDestination() + "] [destLong : "
 				+ getDestLong() + "] [destLat : " + getDestLat() + "] [status : " + getStatus() + "] [createdDate : "
 				+ getCreatedDate() + "] [createdBy : " + getCreatedBy() + "]";
-
 	}
-
 }

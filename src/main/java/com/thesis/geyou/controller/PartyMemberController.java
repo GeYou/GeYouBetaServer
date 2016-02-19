@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.PartyMember;
 import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.PartyMemberService;
@@ -34,5 +35,10 @@ public class PartyMemberController {
 	@RequestMapping(value = "/getByParty/{id}", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<User> getPartyMembersByParty(@PathVariable Integer id) {
 		return partyMemberService.getPartyMembers(id);
+	}
+	
+	@RequestMapping(value = "/getActiveParty/{id}", method = { RequestMethod.GET }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public Party getActiveParty(@PathVariable Integer id) {
+		return partyMemberService.getActiveParty(id);
 	}
 }

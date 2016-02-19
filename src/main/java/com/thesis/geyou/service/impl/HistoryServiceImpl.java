@@ -15,7 +15,7 @@ import com.thesis.geyou.service.HistoryService;
 public class HistoryServiceImpl implements HistoryService {
 
 	@Autowired
-	public HistoryDao historyDao;
+	private HistoryDao historyDao;
 
 	@Override
 	public History addHistory(History h) {
@@ -23,11 +23,13 @@ public class HistoryServiceImpl implements HistoryService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public History getHistory(Integer id) {
 		return historyDao.getHistory(id);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<History> getAllUserHistory(Integer id, int page, int size) {
 		return historyDao.getAllUserHistory(id, page, size);
 	}
@@ -36,5 +38,4 @@ public class HistoryServiceImpl implements HistoryService {
 	public History editHistory(History h) {
 		return historyDao.editHistory(h);
 	}
-
 }

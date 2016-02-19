@@ -18,17 +18,19 @@ import com.thesis.geyou.service.PartyService;
 public class PartyServiceImpl implements PartyService {
 
 	@Autowired
-	public PartyDao partyDao;
+	private PartyDao partyDao;
 	
 	@Autowired
-	public PartyMemberService partyMemberService;
+	private PartyMemberService partyMemberService;
 
 	@Override
+	@Transactional(readOnly = true)
 	public Party getParty(Integer id) {
 		return partyDao.getParty(id);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Party> getAll(int pNo, int pSize) {
 		return partyDao.getAll(pNo, pSize);
 	}

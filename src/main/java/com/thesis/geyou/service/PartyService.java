@@ -6,15 +6,15 @@ import com.thesis.geyou.entity.Party;
 
 public interface PartyService {
 
-	public Party getParty(Integer id);
+	Party getParty(Integer id);
 
-	public List<Party> getAll(int pNo, int pSize);
+	List<Party> getAll(int pNo, int pSize);
 
-	public Party createParty(Party p, Integer id);
+	Party createParty(Party p, Integer id);
 
-	public int deleteParty(Integer id);
+	int deleteParty(Integer id);
 
-	public boolean checkName(String name);
-
-	public Party updateParty(Party p);
+	boolean checkName(String name);
+	 
+	Party updateParty(Party p);
 }

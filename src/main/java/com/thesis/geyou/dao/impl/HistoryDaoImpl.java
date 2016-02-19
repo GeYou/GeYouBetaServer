@@ -41,5 +41,4 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 
 		return getByKey(h.getId());
 	}
-
 }
