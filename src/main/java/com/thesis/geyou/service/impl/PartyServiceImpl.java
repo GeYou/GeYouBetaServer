@@ -39,6 +39,7 @@ public class PartyServiceImpl implements PartyService {
 	public Party createParty(Party p, Integer id) {
 		User u = new User();
 		u.setId(id);
+		p.setStatus("A");
 		p.setCreatedBy(u);
 		
 		Party nParty = partyDao.createParty(p);

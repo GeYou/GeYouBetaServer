@@ -37,7 +37,7 @@ public class PartyMemberController {
 		return partyMemberService.getPartyMembers(id);
 	}
 	
-	@RequestMapping(value = "/getActiveParty/{id}", method = { RequestMethod.GET }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/getActiveParty/{id}", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Party getActiveParty(@PathVariable Integer id) {
 		return partyMemberService.getActiveParty(id);
 	}
