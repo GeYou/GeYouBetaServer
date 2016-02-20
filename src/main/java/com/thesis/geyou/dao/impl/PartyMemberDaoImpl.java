@@ -32,6 +32,7 @@ public class PartyMemberDaoImpl extends AbstractDao<PartyMember, Integer> implem
 	public List<PartyMember> getPartyMembersByParty(Party p) {
 		Criteria criteria = createEntityCriteria("pm");
 		criteria.add(Restrictions.eq("pm.party", p));
+		
 		return criteria.list();
 	}
 
@@ -40,6 +41,16 @@ public class PartyMemberDaoImpl extends AbstractDao<PartyMember, Integer> implem
 		Criteria criteria = createEntityCriteria("pm");
 		criteria.add(Restrictions.eq("pm.user", u));
 		criteria.add(Restrictions.eq("pm.status", "A"));
+		
+		return (PartyMember) criteria.uniqueResult();
+	}
+
+	@Override
+	public PartyMember getByUserAndParty(User u, Party p) {
+		Criteria criteria = createEntityCriteria("pm");
+		criteria.add(Restrictions.eq("pm.user", u));
+		criteria.add(Restrictions.eq("pm.party", p));
+		
 		return (PartyMember) criteria.uniqueResult();
 	}
 }

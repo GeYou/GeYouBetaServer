@@ -61,4 +61,18 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 			return null;
 		}		
 	}
+
+	@Override
+	public Boolean checkPartyMemberExist(Integer pId, Integer uId) {
+		Party p = new Party();
+		p.setId(pId);
+		User u = new User();
+		u.setId(uId);
+		
+		if (partyMemberDao.getByUserAndParty(u, p) != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

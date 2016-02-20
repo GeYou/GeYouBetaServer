@@ -15,4 +15,6 @@ public interface PartyMemberService {
 	List<User> getPartyMembers(Integer id);
 	
 	Party getActiveParty(Integer id);
+	
+	Boolean checkPartyMemberExist(Integer pId, Integer uId);
 }

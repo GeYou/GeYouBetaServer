@@ -15,4 +15,6 @@ public interface PartyMemberDao {
 	List<PartyMember> getPartyMembersByParty(Party p);
 	
 	PartyMember getActiveParty(User u);
+	
+	PartyMember getByUserAndParty(User u, Party p);
 }
