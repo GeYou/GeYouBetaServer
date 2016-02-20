@@ -62,4 +62,9 @@ public class UserController {
 	public User updateUser(@RequestBody User u) {
 		return userService.updateUser(u);
 	}
+	
+	@RequestMapping(value = "/getByEmail", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public User getUserByEmail(@RequestParam(value = "email") String email) {
+		return userService.getByEmail(email);
+	}
 }

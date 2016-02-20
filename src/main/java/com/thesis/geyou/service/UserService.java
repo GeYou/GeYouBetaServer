@@ -19,4 +19,6 @@ public interface UserService {
 	User checkCredentials(String username, String password);
 
 	User updateUser(User u);
+	
+	User getByEmail(String email);
 }

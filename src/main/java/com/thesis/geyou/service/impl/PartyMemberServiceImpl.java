@@ -22,6 +22,7 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 	
 	@Override
 	public PartyMember addMember(PartyMember pm) {
+		pm.setStatus("A");
 		return partyMemberDao.addMember(pm);
 	}
 
