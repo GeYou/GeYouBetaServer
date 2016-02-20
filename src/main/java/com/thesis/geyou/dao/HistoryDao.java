@@ -5,6 +5,7 @@ import java.util.List;
 import com.thesis.geyou.entity.History;
 
 public interface HistoryDao {
+	
 	History addHistory(History h);
 
 	History getHistory(Integer id);

@@ -10,6 +10,7 @@ import com.thesis.geyou.dao.AbstractDao;
 import com.thesis.geyou.dao.PartyMemberDao;
 import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.PartyMember;
+import com.thesis.geyou.entity.User;
 
 @Repository(value = "partyMemberDao")
 public class PartyMemberDaoImpl extends AbstractDao<PartyMember, Integer> implements PartyMemberDao {
@@ -31,7 +32,25 @@ public class PartyMemberDaoImpl extends AbstractDao<PartyMember, Integer> implem
 	public List<PartyMember> getPartyMembersByParty(Party p) {
 		Criteria criteria = createEntityCriteria("pm");
 		criteria.add(Restrictions.eq("pm.party", p));
+		
 		return criteria.list();
 	}
 
+	@Override
+	public PartyMember getActiveParty(User u) {
+		Criteria criteria = createEntityCriteria("pm");
+		criteria.add(Restrictions.eq("pm.user", u));
+		criteria.add(Restrictions.eq("pm.status", "A"));
+		
+		return (PartyMember) criteria.uniqueResult();
+	}
+
+	@Override
+	public PartyMember getByUserAndParty(User u, Party p) {
+		Criteria criteria = createEntityCriteria("pm");
+		criteria.add(Restrictions.eq("pm.user", u));
+		criteria.add(Restrictions.eq("pm.party", p));
+		
+		return (PartyMember) criteria.uniqueResult();
+	}
 }

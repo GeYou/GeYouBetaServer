@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.PartyMember;
 import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.PartyMemberService;
@@ -34,5 +36,16 @@ public class PartyMemberController {
 	@RequestMapping(value = "/getByParty/{id}", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<User> getPartyMembersByParty(@PathVariable Integer id) {
 		return partyMemberService.getPartyMembers(id);
+	}
+	
+	@RequestMapping(value = "/getActiveParty/{id}", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public Party getActiveParty(@PathVariable Integer id) {
+		return partyMemberService.getActiveParty(id);
+	}
+	
+	@RequestMapping(value = "/checkPartyMembership", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public Boolean checkPartyMembership(@RequestParam(value = "partyId") Integer partyId,
+										@RequestParam(value = "userId") Integer userId) {
+		return partyMemberService.checkPartyMemberExist(partyId, userId);
 	}
 }

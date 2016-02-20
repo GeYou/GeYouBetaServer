@@ -47,5 +47,4 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao {
 
 		return getUser(u.getId());
 	}
-
 }

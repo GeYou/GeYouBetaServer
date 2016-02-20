@@ -19,7 +19,7 @@ import com.thesis.geyou.service.HistoryService;
 public class HistoryController {
 
 	@Autowired
-	public HistoryService historyService;
+	private HistoryService historyService;
 
 	@RequestMapping(value = "/add", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public History addHistory(@RequestBody History h) {

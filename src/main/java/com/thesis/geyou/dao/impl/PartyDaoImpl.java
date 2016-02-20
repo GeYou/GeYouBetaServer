@@ -47,5 +47,4 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 
 		return getParty(p.getId());
 	}
-
 }
