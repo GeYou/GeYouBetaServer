@@ -70,6 +70,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getByEmail(String email) {
-		return userDao.getUserByEmail(email);
+		User u = userDao.getUserByEmail(email);
+		if (u != null) {
+			return u;
+		} else {
+			return null;
+		}
 	}
 }
