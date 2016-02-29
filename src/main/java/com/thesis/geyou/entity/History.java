@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,17 +28,11 @@ public class History implements Serializable {
 	@Column(name = "startLat", columnDefinition = "DECIMAL(20, 10)")
 	private Float startLat;
 
-	@Column(name = "endLong", columnDefinition = "DECIMAL(20, 10)")
-	private Float endLong;
-
-	@Column(name = "endLat", columnDefinition = "DECIMAL(20, 10)")
-	private Float endLat;
-
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "partyId", referencedColumnName = "id")
 	private Party party;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "userId", referencedColumnName = "id")
 	private User user;
 
@@ -64,22 +58,6 @@ public class History implements Serializable {
 
 	public void setStartLat(Float startLat) {
 		this.startLat = startLat;
-	}
-
-	public Float getEndLong() {
-		return endLong;
-	}
-
-	public void setEndLong(Float endLong) {
-		this.endLong = endLong;
-	}
-
-	public Float getEndLat() {
-		return endLat;
-	}
-
-	public void setEndLat(Float endLat) {
-		this.endLat = endLat;
 	}
 
 	public Party getParty() {
