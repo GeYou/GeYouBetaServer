@@ -31,8 +31,8 @@ public class PartyServiceImpl implements PartyService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Party> getAll(int pNo, int pSize) {
-		return partyDao.getAll(pNo, pSize);
+	public List<Party> getAll() {
+		return partyDao.getAll();
 	}
 
 	@Override

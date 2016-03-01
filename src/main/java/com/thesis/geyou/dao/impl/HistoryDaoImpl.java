@@ -29,7 +29,7 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<History> getAllUserHistory(Integer id, int page, int size) {
+	public List<History> getAllUserHistory(Integer id) {
 		Criteria criteria = createEntityCriteria("h");
 		criteria.add(Restrictions.eq("h.userId", id));
 		return criteria.list();

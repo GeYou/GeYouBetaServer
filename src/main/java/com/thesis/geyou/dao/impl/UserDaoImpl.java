@@ -19,8 +19,8 @@ public class UserDaoImpl extends AbstractDao<User, Integer> implements UserDao {
 	}
 
 	@Override
-	public List<User> getAll(int pNo, int pSize) {
-		return getAllEntities(pNo, pSize);
+	public List<User> getAll() {
+		return getAllEntities();
 	}
 
 	@Override

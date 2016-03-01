@@ -8,7 +8,7 @@ public interface PartyDao {
 	
 	Party getParty(Integer id);
 
-	List<Party> getAll(int pNo, int pSize);
+	List<Party> getAll();
 
 	Party createParty(Party p);
 

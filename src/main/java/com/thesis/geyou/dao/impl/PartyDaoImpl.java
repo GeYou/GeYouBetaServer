@@ -19,8 +19,8 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDa
 	}
 
 	@Override
-	public List<Party> getAll(int pNo, int pSize) {
-		return getAllEntities(pNo, pSize);
+	public List<Party> getAll() {
+		return getAllEntities();
 	}
 
 	@Override

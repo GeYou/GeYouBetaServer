@@ -28,9 +28,8 @@ public class PartyController {
 	}
 
 	@RequestMapping(value = "/get/all", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Party> getAllParties(@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "10") int size) {
-		return partyService.getAll(page, size);
+	public List<Party> getAllParties() {
+		return partyService.getAll();
 	}
 
 	@RequestMapping(value = "/create/{id}", method = { RequestMethod.POST }, consumes = {

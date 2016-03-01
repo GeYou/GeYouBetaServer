@@ -28,9 +28,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/get/all", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<User> getAllUsers(@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "10") int size) {
-		return userService.getAll(page, size);
+	public List<User> getAllUsers() {
+		return userService.getAll();
 	}
 
 	@RequestMapping(value = "/create", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
