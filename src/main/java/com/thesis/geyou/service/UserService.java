@@ -8,7 +8,7 @@ public interface UserService {
 
 	User getUser(Integer id);
 
-	List<User> getAll(int pNo, int pSize);
+	List<User> getAll();
 
 	User createUser(User u);
 

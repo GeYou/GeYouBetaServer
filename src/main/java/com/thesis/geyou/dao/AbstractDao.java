@@ -8,7 +8,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AbstractDao<T, PK extends Serializable> {
@@ -42,10 +41,8 @@ public class AbstractDao<T, PK extends Serializable> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> getAllEntities(int page, int size) {
-		Criteria c = createEntityCriteria("e");
-		c.setFirstResult((page - 1) * size).setMaxResults(size).addOrder(Order.asc("id")).list();
-		return c.list();
+	public List<T> getAllEntities() {
+		return getSession().createCriteria(persistentClass).list();
 	}
 
 	public void update(T entity) {

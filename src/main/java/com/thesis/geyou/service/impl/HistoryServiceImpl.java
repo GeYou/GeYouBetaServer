@@ -30,8 +30,8 @@ public class HistoryServiceImpl implements HistoryService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<History> getAllUserHistory(Integer id, int page, int size) {
-		return historyDao.getAllUserHistory(id, page, size);
+	public List<History> getAllUserHistory(Integer id) {
+		return historyDao.getAllUserHistory(id);
 	}
 
 	@Override
