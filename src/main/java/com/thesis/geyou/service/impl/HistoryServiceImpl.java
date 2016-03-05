@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thesis.geyou.dao.HistoryDao;
 import com.thesis.geyou.entity.History;
+import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.HistoryService;
 
@@ -40,5 +41,10 @@ public class HistoryServiceImpl implements HistoryService {
 	@Override
 	public History editHistory(History h) {
 		return historyDao.editHistory(h);
+	}
+	
+	@Override
+	public History getHistoryByUserAndParty(Party p, User u) {
+		return historyDao.getHistoryByUserAndParty(p, u);
 	}
 }
