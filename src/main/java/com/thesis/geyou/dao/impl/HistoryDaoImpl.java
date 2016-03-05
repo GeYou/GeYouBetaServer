@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.thesis.geyou.dao.AbstractDao;
 import com.thesis.geyou.dao.HistoryDao;
 import com.thesis.geyou.entity.History;
+import com.thesis.geyou.entity.Party;
+import com.thesis.geyou.entity.User;
 
 @Repository(value = "historyDao")
 public class HistoryDaoImpl extends AbstractDao<History, Integer> implements HistoryDao {
@@ -29,9 +31,9 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<History> getAllUserHistory(Integer id) {
+	public List<History> getAllUserHistory(User u) {
 		Criteria criteria = createEntityCriteria("h");
-		criteria.add(Restrictions.eq("h.userId", id));
+		criteria.add(Restrictions.eq("h.user", u));
 		return criteria.list();
 	}
 
@@ -40,5 +42,14 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 		update(h);
 
 		return getByKey(h.getId());
+	}
+	
+	@Override
+	public History getHistoryByUserAndParty(Party p, User u) {
+		Criteria criteria = createEntityCriteria("h");
+		criteria.add(Restrictions.eq("h.party", p));
+		criteria.add(Restrictions.eq("h.user", u));
+		
+		return (History) criteria.uniqueResult();
 	}
 }

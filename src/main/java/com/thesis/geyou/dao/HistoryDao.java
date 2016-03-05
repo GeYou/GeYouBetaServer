@@ -3,6 +3,8 @@ package com.thesis.geyou.dao;
 import java.util.List;
 
 import com.thesis.geyou.entity.History;
+import com.thesis.geyou.entity.Party;
+import com.thesis.geyou.entity.User;
 
 public interface HistoryDao {
 	
@@ -10,7 +12,9 @@ public interface HistoryDao {
 
 	History getHistory(Integer id);
 
-	List<History> getAllUserHistory(Integer id);
+	List<History> getAllUserHistory(User u);
 
 	History editHistory(History h);
+	
+	History getHistoryByUserAndParty(Party p, User u);
 }
