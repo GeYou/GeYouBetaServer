@@ -29,10 +29,10 @@ public class Party implements Serializable {
 	private String name;
 
 	@Column(name = "startDateTime")
-	private String startDateTime;
+	private Date startDateTime;
 
 	@Column(name = "endDateTime")
-	private String endDateTime;
+	private Date endDateTime;
 
 	@Column(name = "destination")
 	private String destination;
@@ -70,19 +70,19 @@ public class Party implements Serializable {
 		this.name = name;
 	}
 
-	public String getStartDateTime() {
+	public Date getStartDateTime() {
 		return startDateTime;
 	}
 
-	public void setStartDateTime(String startDateTime) {
+	public void setStartDateTime(Date startDateTime) {
 		this.startDateTime = startDateTime;
 	}
 
-	public String getEndDateTime() {
+	public Date getEndDateTime() {
 		return endDateTime;
 	}
 
-	public void setEndDateTime(String endDateTime) {
+	public void setEndDateTime(Date endDateTime) {
 		this.endDateTime = endDateTime;
 	}
 
