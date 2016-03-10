@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thesis.geyou.entity.History;
-import com.thesis.geyou.entity.Party;
-import com.thesis.geyou.entity.User;
 import com.thesis.geyou.service.HistoryService;
 
 @RestController
@@ -46,7 +45,7 @@ public class HistoryController {
 	
 	@RequestMapping(value = "/getExistingHistory", method = { RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public History getHistoryByUserAndParty(@RequestBody Party p, @RequestBody User u) {
-		return historyService.getHistoryByUserAndParty(p, u);
+	public History getHistoryByUserAndParty(@RequestParam(value = "partyId") Integer partyId, @RequestParam(value = "userId") Integer userId) {
+		return historyService.getHistoryByUserAndParty(partyId, userId);
 	}
 }

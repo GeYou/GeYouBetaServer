@@ -44,7 +44,19 @@ public class HistoryServiceImpl implements HistoryService {
 	}
 	
 	@Override
-	public History getHistoryByUserAndParty(Party p, User u) {
-		return historyDao.getHistoryByUserAndParty(p, u);
+	public History getHistoryByUserAndParty(Integer pId, Integer uId) {
+		Party p = new Party();
+		User u = new User();
+		
+		p.setId(pId);
+		u.setId(uId);
+		
+		History h = historyDao.getHistoryByUserAndParty(p, u);
+		
+		if (h == null) {
+			h = new History();
+		}
+		
+		return h;
 	}
 }
