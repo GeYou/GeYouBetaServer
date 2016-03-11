@@ -11,68 +11,29 @@ import com.thesis.geyou.dao.PartyDao;
 import com.thesis.geyou.entity.Party;
 
 @Repository(value = "partyDao")
-public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao {
+public class PartyDaoImpl extends AbstractDao<Party, Integer> implements PartyDao {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#getParty(java.lang.Integer)
-	 */
 	@Override
 	public Party getParty(Integer id) {
 		return getByKey(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#getAll(int, int)
-	 */
 	@Override
-	public List<Party> getAll(int pNo, int pSize) {
-		return getAllEntities(pNo, pSize);
+	public List<Party> getAll() {
+		return getAllEntities();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#createParty(com.thesis.geyou.entities.
-	 * Party)
-	 */
 	@Override
 	public Party createParty(Party p) {
-		Integer id = (Integer) create(p);
+		Integer id = create(p);
 		return getParty(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#updateParty(com.thesis.geyou.entities.
-	 * Party)
-	 */
-	@Override
-	public Party updateParty(Party p) {
-		update(p);
-		
-		return getParty(p.getId());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#deleteParty(java.lang.Integer)
-	 */
 	@Override
 	public int deleteParty(Integer id) {
 		return delete(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.dao.PartyDao#getPartyByName(java.lang.String)
-	 */
 	@Override
 	public Party getPartyByName(String name) {
 		Criteria criteria = createEntityCriteria("p");
@@ -80,4 +41,10 @@ public class PartyDaoImpl extends AbstractDao<Party, Integer>implements PartyDao
 		return (Party) criteria.uniqueResult();
 	}
 
+	@Override
+	public Party updateParty(Party p) {
+		update(p);
+
+		return getParty(p.getId());
+	}
 }

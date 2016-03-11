@@ -6,17 +6,19 @@ import com.thesis.geyou.entity.User;
 
 public interface UserService {
 
-	public User createUser(User u);
+	User getUser(Integer id);
 
-	public List<User> getAll(int pNo, int pSize);
+	List<User> getAll();
 
-	public User getUser(Integer id);
+	User createUser(User u);
 
-	public User updateUser(User u);
+	int deleteUser(Integer id);
 
-	public int deleteUser(Integer id);
+	boolean checkEmail(String email);
 
-	public User checkCredentials(String username, String password);
+	User checkCredentials(String username, String password);
 
-	public boolean checkEmail(String email);
+	User updateUser(User u);
+	
+	User getByEmail(String email);
 }

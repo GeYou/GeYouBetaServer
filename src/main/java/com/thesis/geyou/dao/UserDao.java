@@ -8,14 +8,13 @@ public interface UserDao {
 
 	User getUser(Integer id);
 
-	List<User> getAll(int pNo, int pSize);
+	List<User> getAll();
 
 	User createUser(User u);
-
-	User updateUser(User u);
 
 	int deleteUser(Integer id);
 
 	User getUserByEmail(String email);
 
+	User updateUser(User u);
 }

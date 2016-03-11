@@ -28,15 +28,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/get/all", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<User> getAllUsers(@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "10") int size) {
-		return userService.getAll(page, size);
+	public List<User> getAllUsers() {
+		return userService.getAll();
 	}
 
 	@RequestMapping(value = "/create", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public User createUser(@RequestBody User u) {
 		System.out.println("User object: " + u);
-		
+
 		return userService.createUser(u);
 	}
 
@@ -46,12 +45,13 @@ public class UserController {
 		return userService.deleteUser(id);
 	}
 
-	@RequestMapping(value = "/validateEmail", method = { RequestMethod.GET }, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/validateEmail", method = { RequestMethod.GET }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public Boolean checkEmail(@RequestParam(value = "email") String email) {
 		return userService.checkEmail(email);
 	}
 
-	@RequestMapping(value = "/login", method = { RequestMethod.GET }, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/login", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public User checkCredentials(@RequestParam(value = "email") String email,
 			@RequestParam(value = "password") String password) {
 		return userService.checkCredentials(email, password);
@@ -60,5 +60,10 @@ public class UserController {
 	@RequestMapping(value = "/update", method = { RequestMethod.PUT }, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public User updateUser(@RequestBody User u) {
 		return userService.updateUser(u);
+	}
+	
+	@RequestMapping(value = "/getByEmail", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public User getUserByEmail(@RequestParam(value = "email") String email) {
+		return userService.getByEmail(email);
 	}
 }

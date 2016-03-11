@@ -15,70 +15,40 @@ import com.thesis.geyou.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	public UserDao userDao;
+	private UserDao userDao;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.thesis.geyou.service.UserService#createUser(com.thesis.geyou.entities
-	 * .User)
-	 */
 	@Override
-	public User createUser(User u) {
-		return userDao.createUser(u);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.UserService#getAll(int, int)
-	 */
-	public List<User> getAll(int pNo, int pSize) {
-		return userDao.getAll(pNo, pSize);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.UserService#getUser(java.lang.Integer)
-	 */
 	@Transactional(readOnly = true)
-	@Override
 	public User getUser(Integer id) {
 
 		return userDao.getUser(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.thesis.geyou.service.UserService#updateUser(com.thesis.geyou.entities
-	 * .User)
-	 */
 	@Override
-	public User updateUser(User u) {
-		return userDao.updateUser(u);
+	@Transactional(readOnly = true)
+	public List<User> getAll() {
+		return userDao.getAll();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.UserService#deleteUser(java.lang.Integer)
-	 */
+	@Override
+	public User createUser(User u) {
+		return userDao.createUser(u);
+	}
+
 	@Override
 	public int deleteUser(Integer id) {
 		return userDao.deleteUser(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.thesis.geyou.service.UserService#checkCredentials(java.lang.String,
-	 * java.lang.String)
-	 */
+	@Override
+	public boolean checkEmail(String email) {
+		if (userDao.getUserByEmail(email) != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	@Override
 	public User checkCredentials(String email, String password) {
 		User u = userDao.getUserByEmail(email);
@@ -93,18 +63,18 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.thesis.geyou.service.UserService#checkEmail(java.lang.String)
-	 */
 	@Override
-	public boolean checkEmail(String email) {
-		if (userDao.getUserByEmail(email) != null) {
-			return true;
-		} else {
-			return false;
-		}
+	public User updateUser(User u) {
+		return userDao.updateUser(u);
 	}
 
+	@Override
+	public User getByEmail(String email) {
+		User u = userDao.getUserByEmail(email);
+		if (u != null) {
+			return u;
+		} else {
+			return null;
+		}
+	}
 }

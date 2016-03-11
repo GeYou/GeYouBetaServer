@@ -1,4 +1,4 @@
-package com.thesis.geyou.dao;
+package com.thesis.geyou.service;
 
 import java.util.List;
 
@@ -6,15 +6,15 @@ import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.PartyMember;
 import com.thesis.geyou.entity.User;
 
-public interface PartyMemberDao {
+public interface PartyMemberService {
 	
 	PartyMember addMember(PartyMember pm);
 	
 	PartyMember getPartyMember(Integer id);
 
-	List<PartyMember> getPartyMembersByParty(Party p);
+	List<User> getPartyMembers(Integer id);
 	
-	PartyMember getActiveParty(User u);
+	Party getActiveParty(Integer id);
 	
-	PartyMember getByUserAndParty(User u, Party p);
+	Boolean checkPartyMemberExist(Integer pId, Integer uId);
 }

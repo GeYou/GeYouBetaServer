@@ -28,12 +28,12 @@ public class PartyController {
 	}
 
 	@RequestMapping(value = "/get/all", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Party> getAllParties(@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "10") int size) {
-		return partyService.getAll(page, size);
+	public List<Party> getAllParties() {
+		return partyService.getAll();
 	}
 
-	@RequestMapping(value = "/create/{id}", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/create/{id}", method = { RequestMethod.POST }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public Party createParty(@RequestBody Party p, @PathVariable Integer id) {
 		System.out.println("Party object: " + p);
 		return partyService.createParty(p, id);
@@ -44,7 +44,7 @@ public class PartyController {
 	public int deleteParty(@PathVariable Integer id) {
 		return partyService.deleteParty(id);
 	}
-	
+
 	@RequestMapping(value = "/validateName", method = { RequestMethod.GET })
 	public Boolean checkName(@RequestParam(value = "name") String name) {
 		return partyService.checkName(name);
@@ -53,10 +53,5 @@ public class PartyController {
 	@RequestMapping(value = "/update", method = { RequestMethod.PUT }, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public Party updateParty(@RequestBody Party p) {
 		return partyService.updateParty(p);
-	}
-	
-	@RequestMapping(value = "/addMember/{id}", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public Party addMember(@RequestBody Party p, @PathVariable Integer id) {
-		return partyService.addMember(p, id);
 	}
 }
