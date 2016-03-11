@@ -57,6 +57,7 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 		
 		if(pm == null) {
 			pm = new PartyMember();
+			pm.setParty(new Party());
 		}
 		
 		return pm.getParty();
