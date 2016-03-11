@@ -49,7 +49,7 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 	}
 
 	@Override
-	public Party getActiveParty(Integer id) {
+	public PartyMember getActiveParty(Integer id) {
 		User u = new User();
 		u.setId(id);
 		
@@ -57,10 +57,9 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 		
 		if(pm == null) {
 			pm = new PartyMember();
-			pm.setParty(new Party());
 		}
 		
-		return pm.getParty();
+		return pm;
 	}
 
 	@Override
