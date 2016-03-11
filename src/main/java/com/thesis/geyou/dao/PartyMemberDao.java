@@ -17,4 +17,6 @@ public interface PartyMemberDao {
 	PartyMember getActiveParty(User u);
 	
 	PartyMember getByUserAndParty(User u, Party p);
+	
+	PartyMember editMember(PartyMember pm);
 }

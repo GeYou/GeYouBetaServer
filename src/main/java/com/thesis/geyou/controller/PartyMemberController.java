@@ -48,4 +48,15 @@ public class PartyMemberController {
 										@RequestParam(value = "userId") Integer userId) {
 		return partyMemberService.checkPartyMemberExist(partyId, userId);
 	}
+	
+	@RequestMapping(value = "/getByUserAndParty", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public PartyMember getPartyMemberByUserAndParty(@RequestParam(value = "partyId") Integer pId, 
+													@RequestParam(value = "userId") Integer uId){
+		return partyMemberService.getPartyMemberByUSerAndParty(pId, uId);
+	}
+	
+	@RequestMapping(value = "/edit", method = { RequestMethod.PUT }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public PartyMember editMember(@RequestBody PartyMember pm) {
+		return partyMemberService.editMember(pm);
+	}
 }

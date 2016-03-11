@@ -53,4 +53,11 @@ public class PartyMemberDaoImpl extends AbstractDao<PartyMember, Integer> implem
 		
 		return (PartyMember) criteria.uniqueResult();
 	}
+	
+	@Override
+	public PartyMember editMember(PartyMember pm) {
+		update(pm);
+		
+		return getPartyMember(pm.getId());
+	}
 }

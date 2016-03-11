@@ -55,11 +55,11 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 		
 		PartyMember pm = partyMemberDao.getActiveParty(u); 
 		
-		if(pm != null) {
-			return pm.getParty();
-		} else {
-			return null;
-		}		
+		if(pm == null) {
+			pm = new PartyMember();
+		}
+		
+		return pm.getParty();
 	}
 
 	@Override
@@ -74,5 +74,28 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public PartyMember getPartyMemberByUSerAndParty(Integer pId, Integer uId) {
+		PartyMember pm = new PartyMember();
+		
+		Party p = new Party();
+		p.setId(pId);
+		User u = new User();
+		u.setId(uId);
+		
+		pm = partyMemberDao.getByUserAndParty(u, p);
+		
+		if(pm == null) {
+			pm = new PartyMember();
+		}
+		
+		return pm;
+	}
+	
+	@Override
+	public PartyMember editMember(PartyMember pm) {
+		return partyMemberDao.editMember(pm);
 	}
 }
