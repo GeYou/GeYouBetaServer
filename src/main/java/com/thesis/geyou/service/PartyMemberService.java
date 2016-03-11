@@ -2,7 +2,6 @@ package com.thesis.geyou.service;
 
 import java.util.List;
 
-import com.thesis.geyou.entity.Party;
 import com.thesis.geyou.entity.PartyMember;
 import com.thesis.geyou.entity.User;
 
@@ -14,7 +13,7 @@ public interface PartyMemberService {
 
 	List<User> getPartyMembers(Integer id);
 	
-	Party getActiveParty(Integer id);
+	PartyMember getActiveParty(Integer id);
 	
 	Boolean checkPartyMemberExist(Integer pId, Integer uId);
 	
