@@ -56,10 +56,12 @@ public class UserServiceImpl implements UserService {
 			if (u.getPassword().equals(password)) {
 				return u;
 			} else {
-				return null;
+				u = new User();
+				return u;
 			}
 		} else {
-			return null;
+			u = new User();
+			return u;
 		}
 	}
 
@@ -74,7 +76,8 @@ public class UserServiceImpl implements UserService {
 		if (u != null) {
 			return u;
 		} else {
-			return null;
+			u = new User();
+			return u;
 		}
 	}
 }

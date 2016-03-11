@@ -17,4 +17,8 @@ public interface PartyMemberService {
 	Party getActiveParty(Integer id);
 	
 	Boolean checkPartyMemberExist(Integer pId, Integer uId);
+	
+	PartyMember getPartyMemberByUSerAndParty(Integer pId, Integer uId);
+	
+	PartyMember editMember(PartyMember pm);
 }
