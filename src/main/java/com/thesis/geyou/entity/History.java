@@ -22,11 +22,11 @@ public class History implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "startLong", columnDefinition = "DECIMAL(20, 10)")
-	private Float startLong;
+	@Column(name = "startLong", columnDefinition = "DECIMAL(20, 15)")
+	private Double startLong;
 
-	@Column(name = "startLat", columnDefinition = "DECIMAL(20, 10)")
-	private Float startLat;
+	@Column(name = "startLat", columnDefinition = "DECIMAL(20, 15)")
+	private Double startLat;
 
 	@ManyToOne
 	@JoinColumn(name = "partyId", referencedColumnName = "id")
@@ -44,19 +44,19 @@ public class History implements Serializable {
 		this.id = id;
 	}
 
-	public Float getStartLong() {
+	public Double getStartLong() {
 		return startLong;
 	}
 
-	public void setStartLong(Float startLong) {
+	public void setStartLong(Double startLong) {
 		this.startLong = startLong;
 	}
 
-	public Float getStartLat() {
+	public Double getStartLat() {
 		return startLat;
 	}
 
-	public void setStartLat(Float startLat) {
+	public void setStartLat(Double startLat) {
 		this.startLat = startLat;
 	}
 

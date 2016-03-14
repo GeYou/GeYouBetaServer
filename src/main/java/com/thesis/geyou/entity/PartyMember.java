@@ -33,11 +33,11 @@ public class PartyMember implements Serializable {
 	@JoinColumn(name = "partyId", referencedColumnName = "id")
 	private Party party;
 	
-	@Column(name = "lastLong", columnDefinition = "DECIMAL(20, 10)")
-	private Float lastLong;
+	@Column(name = "lastLong", columnDefinition = "DECIMAL(20, 15)")
+	private Double lastLong;
 
-	@Column(name = "lastLat", columnDefinition = "DECIMAL(20, 10)")
-	private Float lastLat;
+	@Column(name = "lastLat", columnDefinition = "DECIMAL(20, 15)")
+	private Double lastLat;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "joinDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
@@ -70,19 +70,19 @@ public class PartyMember implements Serializable {
 		return party;
 	}
 
-	public Float getLastLong() {
+	public Double getLastLong() {
 		return lastLong;
 	}
 
-	public void setLastLong(Float lastLong) {
+	public void setLastLong(Double lastLong) {
 		this.lastLong = lastLong;
 	}
 
-	public Float getLastLat() {
+	public Double getLastLat() {
 		return lastLat;
 	}
 
-	public void setLastLat(Float lastLat) {
+	public void setLastLat(Double lastLat) {
 		this.lastLat = lastLat;
 	}
 
