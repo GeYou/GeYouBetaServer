@@ -20,4 +20,6 @@ public interface PartyMemberService {
 	PartyMember getPartyMemberByUSerAndParty(Integer pId, Integer uId);
 	
 	PartyMember editMember(PartyMember pm);
+	
+	List<PartyMember> getPartyMembersByParty(Integer id);
 }
