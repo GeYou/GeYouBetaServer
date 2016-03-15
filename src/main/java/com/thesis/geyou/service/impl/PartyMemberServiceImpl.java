@@ -98,4 +98,12 @@ public class PartyMemberServiceImpl implements PartyMemberService {
 	public PartyMember editMember(PartyMember pm) {
 		return partyMemberDao.editMember(pm);
 	}
+
+	@Override
+	public List<PartyMember> getPartyMembersByParty(Integer id) {
+		Party p = new Party();
+		p.setId(id);
+		
+		return partyMemberDao.getPartyMembersByParty(p);
+	}
 }
