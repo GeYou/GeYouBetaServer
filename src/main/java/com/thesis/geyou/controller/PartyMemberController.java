@@ -58,4 +58,9 @@ public class PartyMemberController {
 	public PartyMember editMember(@RequestBody PartyMember pm) {
 		return partyMemberService.editMember(pm);
 	}
+	
+	@RequestMapping(value = "/getMembersByParty/{id}", method = { RequestMethod.GET }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<PartyMember> getMembersByParty(@PathVariable Integer id){
+		return partyMemberService.getPartyMembersByParty(id);
+	}
 }
