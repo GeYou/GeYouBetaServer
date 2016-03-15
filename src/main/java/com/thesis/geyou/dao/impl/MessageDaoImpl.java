@@ -11,7 +11,7 @@ import com.thesis.geyou.dao.MessageDao;
 import com.thesis.geyou.entity.Message;
 import com.thesis.geyou.entity.Party;
 
-@Repository(value = "partyDao")
+@Repository(value = "messageDao")
 public class MessageDaoImpl extends AbstractDao<Message, Integer> implements MessageDao {
 
 	@Override
