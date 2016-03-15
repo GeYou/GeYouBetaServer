@@ -32,6 +32,10 @@ public class Message implements Serializable{
 	@JoinColumn(name = "partyId", referencedColumnName = "id")
 	private Party party;
 	
+	@ManyToOne
+	@JoinColumn(name = "userId", referencedColumnName = "id")
+	private User user;
+	
 	@Column(name = "sentDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date sentDate;
@@ -58,6 +62,14 @@ public class Message implements Serializable{
 
 	public void setParty(Party party) {
 		this.party = party;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getSentDate() {

@@ -3,6 +3,7 @@ package com.thesis.geyou.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,7 @@ public class MessageDaoImpl extends AbstractDao<Message, Integer> implements Mes
 	public List<Message> getAllByParty(Party p) {
 		Criteria criteria = createEntityCriteria("m");
 		criteria.add(Restrictions.eq("m.party", p));
+		criteria.addOrder(Order.desc("sentDate"));
 		
 		return criteria.list();
 	}
