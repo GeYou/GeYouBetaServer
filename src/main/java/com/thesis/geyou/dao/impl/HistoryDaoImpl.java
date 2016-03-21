@@ -52,4 +52,14 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 		
 		return (History) criteria.uniqueResult();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<History> getHistoryPoints(User u, Party p) {
+		Criteria criteria = createEntityCriteria("h");
+		criteria.add(Restrictions.eq("h.party", p));
+		criteria.add(Restrictions.eq("h.user", u));
+		
+		return criteria.list();
+	}
 }

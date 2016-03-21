@@ -15,4 +15,6 @@ public interface HistoryService {
 	History editHistory(History h);
 	
 	History getHistoryByUserAndParty(Integer pId, Integer uId);
+	
+	List<History> getHistoryPoints(Integer pId, Integer uId);
 }

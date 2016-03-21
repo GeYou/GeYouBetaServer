@@ -1,6 +1,7 @@
 package com.thesis.geyou.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "History")
@@ -35,6 +38,10 @@ public class History implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "userId", referencedColumnName = "id")
 	private User user;
+	
+	@Column(name = "userDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date userDate;
 
 	public Integer getId() {
 		return id;
@@ -74,5 +81,13 @@ public class History implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Date getUserDate() {
+		return userDate;
+	}
+
+	public void setUserDate(Date userDate) {
+		this.userDate = userDate;
 	}
 }

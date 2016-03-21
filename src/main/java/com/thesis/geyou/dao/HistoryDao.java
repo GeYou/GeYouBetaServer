@@ -17,4 +17,6 @@ public interface HistoryDao {
 	History editHistory(History h);
 	
 	History getHistoryByUserAndParty(Party p, User u);
+	
+	List<History> getHistoryPoints(User u, Party p);
 }
