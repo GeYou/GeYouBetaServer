@@ -42,6 +42,9 @@ public class History implements Serializable {
 	@Column(name = "userDate", updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date userDate;
+	
+	@Column(name = "type")
+	private String type;
 
 	public Integer getId() {
 		return id;
@@ -89,5 +92,13 @@ public class History implements Serializable {
 
 	public void setUserDate(Date userDate) {
 		this.userDate = userDate;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }
