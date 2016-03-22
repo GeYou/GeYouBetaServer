@@ -66,4 +66,15 @@ public class HistoryServiceImpl implements HistoryService {
 		
 		return h;
 	}
+
+	@Override
+	public List<History> getHistoryPoints(Integer pId, Integer uId) {
+		User u = new User();
+		Party p = new Party();
+		
+		u.setId(uId);
+		p.setId(pId);
+		
+		return historyDao.getHistoryPoints(u, p);
+	}
 }

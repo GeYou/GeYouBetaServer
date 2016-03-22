@@ -6,6 +6,7 @@ package com.thesis.geyou.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +35,7 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 	public List<History> getAllUserHistory(User u) {
 		Criteria criteria = createEntityCriteria("h");
 		criteria.add(Restrictions.eq("h.user", u));
+		criteria.add(Restrictions.eq("h.type", "R"));
 		return criteria.list();
 	}
 
@@ -51,5 +53,17 @@ public class HistoryDaoImpl extends AbstractDao<History, Integer> implements His
 		criteria.add(Restrictions.eq("h.user", u));
 		
 		return (History) criteria.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<History> getHistoryPoints(User u, Party p) {
+		Criteria criteria = createEntityCriteria("h");
+		criteria.add(Restrictions.eq("h.party", p));
+		criteria.add(Restrictions.eq("h.user", u));
+		criteria.add(Restrictions.eq("h.type", "P"));
+		criteria.addOrder(Order.asc("userDate"));
+		
+		return criteria.list();
 	}
 }

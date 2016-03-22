@@ -48,4 +48,10 @@ public class HistoryController {
 	public History getHistoryByUserAndParty(@RequestParam(value = "partyId") Integer partyId, @RequestParam(value = "userId") Integer userId) {
 		return historyService.getHistoryByUserAndParty(partyId, userId);
 	}
+	
+	@RequestMapping(value = "/getHistoryPoints", method = { RequestMethod.GET }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<History> getHistoryPointsByUserAndParty(@RequestParam(value = "partyId") Integer partyId, @RequestParam(value = "userId") Integer userId) {
+		return historyService.getHistoryPoints(partyId, userId);
+	}
 }
